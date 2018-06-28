@@ -105,14 +105,14 @@ async def on_message(message):
                     
                     if quadice == 1:
                         randompass()
-                        msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Quad Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4).format(message)
+                        msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Quad Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
                         await client.send_message(channel2, msg4)
                         quadice = 0
                         stop = 1
                     
                     if pbpractice == 1:
                         randompass()
-                        msg2 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4).format(message)
+                        msg2 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
                         await client.send_message(channel2, msg2)
                         pbpractice = 0
                         stop = 1
