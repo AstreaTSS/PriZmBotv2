@@ -61,6 +61,7 @@ async def on_message(message):
     
     channel2 = client.get_channel("457939628209602560")
     msg3 = ('Hello <@&457299107371941888>! Practice starts now!')
+    msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
     
     #if message.author == client.user:
        #return
@@ -75,8 +76,8 @@ async def on_message(message):
                 
                 if stop <= 0:
                 # this first one is meant for testing. delete before final release
-                    if times == '13:06':
-                        pbpractice = 1
+                    #if times == '13:06':
+                        #pbpractice = 1
                         
                 # actual practices
                     if times == '14:30':
@@ -103,11 +104,15 @@ async def on_message(message):
                     await asyncio.sleep(1)
                     
                     if quadice == 1:
-                        print('test')
+                        randompass()
+                        msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Quad Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4).format(message)
+                        await client.send_message(channel2, msg4)
+                        quadice = 0
+                        stop = 1
                     
                     if pbpractice == 1:
                         randompass()
-                        msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4).format(message)
+                        msg2 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4).format(message)
                         await client.send_message(channel2, msg2)
                         pbpractice = 0
                         stop = 1
@@ -120,9 +125,15 @@ async def on_message(message):
     
     if message.content.startswith('!pb'):
         pbpractice = 1
+    
+    if message.content.startswith('!quad'):
+        quadice = 1
         
     if message.content.startswith('!pbstart'):
         await client.send_message(channel2, msg3)
+    
+    if message.content.startswith('!quadstart'):
+        await client.send_message(channel2, msg5)
     
     if message.content.startswith('!captain'):
         curname = str(message.author.display_name)
@@ -225,8 +236,11 @@ async def on_message(message):
         msg = 'Hello {0.author.mention}'.format(message)
         await client.send_message(message.channel, msg)
         
-    if message.content.startswith('!test'):
-        await client.send_message(message.channel, "Hi!")
+    if message.content.startswith("Hi"):
+        author = str(message.author)
+        if author == 'PriZmBot#7447':
+            pong = "🏓"
+            await client.add_reaction(message, pong)
         
     #if message.content.startswith('Hi!'):
         #author = str(message.author)
