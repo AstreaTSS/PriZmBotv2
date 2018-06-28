@@ -5,8 +5,9 @@ import datetime
 import asyncio
 import time
 import random
+import os
 
-TOKEN = 'NOPE'
+TOKEN = os.environ.get('TOKEN')
 
 client = discord.Client()
 
