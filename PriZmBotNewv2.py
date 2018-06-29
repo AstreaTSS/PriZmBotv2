@@ -133,7 +133,7 @@ async def on_message(message):
                     
                     if pbpractice == 1:
                         randompass()
-                        msg2 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                        msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
                         await client.send_message(channel2, msg2)
                         pbpractice = 0
                         stop = 1
@@ -142,7 +142,7 @@ async def on_message(message):
                     await asyncio.sleep(60)
                     
         else:
-            await message.channel.send('Bot already started!')
+            await client.send_message(channel2, 'Bot already started!')
     
     if message.content.startswith('!pb'):
         pbpractice = 1
