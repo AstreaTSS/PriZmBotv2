@@ -97,17 +97,15 @@ async def on_message(message):
                             await client.send_message(channel2, msg5)
                             
                     if times == '18:30':  #6:30 PM
-                        if a == 1:
-                            pbpractice = 1
-                        elif a == 6:
+                        if a == 6:
                             pbpractice = 1
                             
                     if times == '19:00':  #7 PM
+                        if a == 6:
+                            await client.send_message(channel2, msg3)
                         if a == 1:
-                            await client.send_message(channel2, msg3)
-                        elif a == 6:
-                            await client.send_message(channel2, msg3)
-                        elif a == 2:
+                            pbpractice = 1
+                        elif a == 2: 
                             quadice = 1
                         elif a == 3:
                             pbpractice = 1
@@ -115,7 +113,9 @@ async def on_message(message):
                             pbpractice = 1
                             
                     if times == '19:30':  #7:30 PM
-                        if a == 2:
+                        if a == 1:
+                            await client.send_message(channel2, msg3)
+                        elif a == 2:
                             await client.send_message(channel2, msg5)  
                         elif a == 3:
                             await client.send_message(channel2, msg3)
