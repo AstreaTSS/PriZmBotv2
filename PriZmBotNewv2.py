@@ -80,32 +80,53 @@ async def on_message(message):
                         #pbpractice = 1
                         
                 # actual practices
-                    if times == '14:30':
+                    if times == '14:30':  #2:30 PM
                         if a == 6:
                             quadice = 1
-                    if times == '15:00':
+                            
+                    if times == '15:00':  #3 PM
                         if a == 6:
-                            await client.send_message(channel2, msg3)
-                    if times == '18:30':
-                        if a == 5:
+                            await client.send_message(channel2, msg5)  
+                            
+                    if times == '17:30':  #5:30 PM
+                        if a == 4:
                             quadice = 1
-                    if times == '19:00':
-                        if 2 <= a <= 4:
-                            quadice = 1
-                        elif a == 5:
-                            await client.send_message(channel2, msg3)
+                            
+                    if times == '18:00':  #6 PM
+                        if a == 4:
+                            await client.send_message(channel2, msg5)
+                            
+                    if times == '18:30':  #6:30 PM
+                        if a == 1:
+                            pbpractice = 1
                         elif a == 6:
                             pbpractice = 1
-                    if times == '19:30':
-                        if 2 <= a <= 4:
+                            
+                    if times == '19:00':  #7 PM
+                        if a == 1:
                             await client.send_message(channel2, msg3)
                         elif a == 6:
                             await client.send_message(channel2, msg3)
+                        elif a == 2:
+                            quadice = 1
+                        elif a == 3:
+                            pbpractice = 1
+                        elif a == 5:
+                            pbpractice = 1
+                            
+                    if times == '19:30':  #7:30 PM
+                        if a == 2:
+                            await client.send_message(channel2, msg5)  
+                        elif a == 3:
+                            await client.send_message(channel2, msg3)
+                        elif a == 5:
+                            await client.send_message(channel2, msg3)
+                        
                     await asyncio.sleep(1)
                     
                     if quadice == 1:
                         randompass()
-                        msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Quad Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                        msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
                         await client.send_message(channel2, msg4)
                         quadice = 0
                         stop = 1
