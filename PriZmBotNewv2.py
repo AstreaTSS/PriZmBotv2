@@ -142,7 +142,7 @@ async def on_message(message):
                     await asyncio.sleep(60)
                     
         else:
-            await client.send_message(channel2, 'Bot already started!')
+            await client.send_message(message.channel, 'Bot already started!')
     
     if message.content.startswith('!pb'):
         pbpractice = 1
