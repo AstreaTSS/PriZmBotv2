@@ -1,8 +1,8 @@
 # https://github.com/Rapptz/discord.py/blob/async/examples/reply.py was used for basic blueprints for the rest of this project
 # Uses discord.py
 # Remember to change the token to the working one and back to 'Nope' before you send anything to Github.
+
 import discord
-from discord.ext import commands
 import datetime
 import asyncio
 import time
@@ -48,7 +48,7 @@ def randompass():
     sn1 = str(n1)
     sn2 = str(n2)
     sn3 = str(n3)
-    sn4 = str(n4) 
+    sn4 = str(n4)
     
 @bot.event
 async def on_ready():
@@ -79,7 +79,7 @@ async def on_message(message):
        #return
         
     if message.content.startswith("!run"):
-        counter = counter + 1 
+        counter = counter + 1
         if counter <= 1:
             await bot.send_message(message.channel, "Bot running in background!")
             while True:
@@ -98,7 +98,7 @@ async def on_message(message):
                             
                     if times == '15:00':  #3 PM
                         if a == 6:
-                            await bot.send_message(channel2, msg5)  
+                            await bot.send_message(channel2, msg5)
                             
                     if times == '17:30':  #5:30 PM
                         if a == 4:
@@ -117,7 +117,7 @@ async def on_message(message):
                             await bot.send_message(channel2, msg3)
                         if a == 1:
                             pbpractice = 1
-                        elif a == 2: 
+                        elif a == 2:
                             quadice = 1
                         elif a == 3:
                             pbpractice = 1
@@ -128,7 +128,7 @@ async def on_message(message):
                         if a == 1:
                             await bot.send_message(channel2, msg3)
                         elif a == 2:
-                            await bot.send_message(channel2, msg5)  
+                            await bot.send_message(channel2, msg5)
                         elif a == 3:
                             await bot.send_message(channel2, msg3)
                         elif a == 5:
@@ -175,6 +175,25 @@ async def on_message(message):
         await bot.add_roles(message.mentions[0], role)
         welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
         await bot.send_message(channel2, welbome)
+        
+        curname = str(message.mentions[0].display_name)
+        begin = 'pZ'
+        omechara = "\u25B3"
+        supbegin = begin + omechara
+        
+        if curname.startswith("pZ△"):
+            newnick = curname
+        elif curname.startswith("pZ▲"):
+            newnick = curname.replace("pZ▲", supbegin)
+        elif curname.startswith("pZ∴"):
+            newnick = curname.replace("pZ∴", supbegin)
+        elif curname.startswith("pZ◆"):
+            newnick = curname.replace("pZ◆", supbegin)
+        else:
+            newnick = begin + omechara + curname
+            
+        await bot.change_nickname(message.mentions[0], newnick)
+        
     
     if message.content.startswith('!captain'):
         curname = str(message.author.display_name)
@@ -196,30 +215,6 @@ async def on_message(message):
             await bot.send_message(message.channel, "You're already a captain!")
         else:
             newnick = begin + capchara + curname
-            await bot.send_message(message.channel, "Name changed.")
-            
-        await bot.change_nickname(message.author, newnick)
-        
-    if message.content.startswith('!omega'):
-        curname = str(message.author.display_name)
-        begin = 'pZ'
-        omechara = "\u25B3"
-        supbegin = begin + omechara
-        
-        if curname.startswith("pZ△"):
-            newnick = curname
-            await bot.send_message(message.channel, "You're already in Omega!")
-        elif curname.startswith("pZ▲"):
-            newnick = curname.replace("pZ▲", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ∴"):
-            newnick = curname.replace("pZ∴", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ◆"):
-            newnick = curname.replace("pZ◆", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        else:
-            newnick = begin + omechara + curname
             await bot.send_message(message.channel, "Name changed.")
             
         await bot.change_nickname(message.author, newnick)
