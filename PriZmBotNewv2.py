@@ -72,7 +72,7 @@ async def on_message(message):
     global sn4
     
     user = message.author
-    lieutenant = discord.utils.get(user.server.roles, name="Lieutenant")
+    lieut = discord.utils.get(user.server.roles, name="Lieutenant")
     cocap = discord.utils.get(user.server.roles, name="Co-Captain")
     cap = discord.utils.get(user.server.roles, name="Captain")
     clancap = discord.utils.get(user.server.roles, name="Clan Captain")
@@ -175,37 +175,48 @@ async def on_message(message):
         await bot.send_message(channel2, msg5)
         
     if message.content.startswith('!omepassed'):
+        allowed = false
         user = message.author
         roles = user.roles
         
         if clancap in roles:
-            print('It works!')
-        
-        mentioned = message.mentions[0].id
-        role = discord.utils.get(user.server.roles, name="Omega")
-        await bot.add_roles(message.mentions[0], role)
-        welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
-        await bot.send_message(channel2, welbome)
-        
-        curname = str(message.mentions[0].display_name)
-        begin = 'pZ'
-        omechara = "\u25B3"
-        supbegin = begin + omechara
-        
-        if curname.startswith("pZ△"):
-            newnick = curname
-        elif curname.startswith("pZ▲"):
-            newnick = curname.replace("pZ▲", supbegin)
-        elif curname.startswith("pZ∴"):
-            newnick = curname.replace("pZ∴", supbegin)
-        elif curname.startswith("pZ◆"):
-            newnick = curname.replace("pZ◆", supbegin)
-        else:
-            newnick = begin + omechara + curname
+            allowed = true
+        elif cap in roles:
+            allowed = true
+        elif cocap in roles:
+            allowed = true
+        elif lieut in roles:
+            allowed = true
             
-        await bot.change_nickname(message.mentions[0], newnick)
+        if allowed:
+            mentioned = message.mentions[0].id
+            role = discord.utils.get(user.server.roles, name="Omega")
+            await bot.add_roles(message.mentions[0], role)
+            welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
+            await bot.send_message(channel2, welbome)
         
-        await bot.send_message(message.channel, "Command successful.")
+            curname = str(message.mentions[0].display_name)
+            begin = 'pZ'
+            omechara = "\u25B3"
+            supbegin = begin + omechara
+            
+            if curname.startswith("pZ△"):
+                newnick = curname
+            elif curname.startswith("pZ▲"):
+                newnick = curname.replace("pZ▲", supbegin)
+            elif curname.startswith("pZ∴"):
+                newnick = curname.replace("pZ∴", supbegin)
+            elif curname.startswith("pZ◆"):
+                newnick = curname.replace("pZ◆", supbegin)
+            else:
+                newnick = begin + omechara + curname
+                
+            await bot.change_nickname(message.mentions[0], newnick)
+            
+            await bot.send_message(message.channel, "Command successful.")
+            
+        else:
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
         
     
     if message.content.startswith('!captain'):
