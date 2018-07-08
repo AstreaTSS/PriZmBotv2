@@ -325,7 +325,7 @@ async def on_message(message):
             allowed = true
             
             
-        if allowed = true:
+        if allowed:
             curname = str(message.mentions[0].display_name)
             begin = 'pZ'
             capchara = "\u25C6"
