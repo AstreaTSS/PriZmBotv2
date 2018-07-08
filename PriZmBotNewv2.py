@@ -3,6 +3,7 @@
 # Remember to change the token to the working one and back to 'Nope' before you send anything to Github.
 
 import discord
+from discord.ext import commands
 import datetime
 import asyncio
 import time
