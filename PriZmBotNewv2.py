@@ -221,18 +221,18 @@ async def on_message(message):
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
             
     if message.content.startswith('!infpassed'):
-        allowed = false
+        allowed = False
         user = message.author
         roles = user.roles
         
         if clancap in roles:
-            allowed = true
+            allowed = True
         elif cap in roles:
-            allowed = true
+            allowed = True
         elif cocap in roles:
-            allowed = true
+            allowed = True
         elif lieut in roles:
-            allowed = true
+            allowed = True
             
         if allowed:
             mentioned = message.mentions[0].id
@@ -266,18 +266,18 @@ async def on_message(message):
             
 
     if message.content.startswith('!alppassed'):
-        allowed = false
+        allowed = False
         user = message.author
         roles = user.roles
         
         if clancap in roles:
-            allowed = true
+            allowed = True
         elif cap in roles:
-            allowed = true
+            allowed = True
         elif cocap in roles:
-            allowed = true
+            allowed = True
         elif lieut in roles:
-            allowed = true
+            allowed = True
             
         if allowed:
             mentioned = message.mentions[0].id
@@ -311,18 +311,18 @@ async def on_message(message):
         
     
     if message.content.startswith('!captain'):
-        allowed = false
+        allowed = False
         user = message.author
         roles = user.roles
         
         if clancap in roles:
-            allowed = true
+            allowed = True
         elif cap in roles:
-            allowed = true
+            allowed = True
         elif cocap in roles:
-            allowed = true
+            allowed = True
         elif lieut in roles:
-            allowed = true
+            allowed = True
             
             
         if allowed:
