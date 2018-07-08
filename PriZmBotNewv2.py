@@ -75,14 +75,14 @@ async def on_message(message):
     
     user = message.author
     lieut = discord.utils.get(user.server.roles, name="Lieutenant")
-    cocap = discord.utils.get(user.server.roles, name="Co-Captain")
-    cap = discord.utils.get(user.server.roles, name="Captain")
+    cocap = discord.utils.get(user.server.roles, name="Co-Captain ◆")
+    cap = discord.utils.get(user.server.roles, name="Captain ◆")
     clancap = discord.utils.get(user.server.roles, name="Clan Captain")
     
-    omemention = discord.utils.get(user.server.roles, name="Omega").mention
-    channel2 = bot.get_channel("457939628209602560")
-    infanc = bot.get_channel("462286782080483350")
-    alpanc = bot.get_channel("465547475839746058")
+    omemention = discord.utils.get(user.server.roles, name="Omega △").mention
+    channel2 = bot.get_channel("458396643449110569")
+    infanc = bot.get_channel("458397577763749888")
+    alpanc = bot.get_channel("458385881552912394")
     msg3 = ('Hello ' + omemention +'! Practice starts now!')
     msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
     
@@ -257,7 +257,7 @@ async def on_message(message):
             
         if allowed:
             mentioned = message.mentions[0].id
-            role = discord.utils.get(user.server.roles, name="Omega")
+            role = discord.utils.get(user.server.roles, name="Omega △")
             await bot.add_roles(message.mentions[0], role)
             welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
             await bot.send_message(channel2, welbome)
@@ -301,7 +301,7 @@ async def on_message(message):
             
         if allowed:
             mentioned = message.mentions[0].id
-            role = discord.utils.get(user.server.roles, name="Infinite")
+            role = discord.utils.get(user.server.roles, name="Infinite ▲")
             await bot.add_roles(message.mentions[0], role)
             welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
             await bot.send_message(infanc, welbome)
@@ -346,7 +346,7 @@ async def on_message(message):
             
         if allowed:
             mentioned = message.mentions[0].id
-            role = discord.utils.get(user.server.roles, name="Alpha")
+            role = discord.utils.get(user.server.roles, name="Alpha ∴")
             await bot.add_roles(message.mentions[0], role)
             welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
             await bot.send_message(alpanc, welbome)
