@@ -22,6 +22,7 @@ a = datetime.datetime.today().weekday()
 counter = 0
 quadice = 0
 pbpractice = 0
+practice = 0
 stop = 0
 sn1 = str(1)
 sn2 = str(1)
@@ -64,6 +65,7 @@ async def on_message(message):
     global a
     global quadice
     global pbpractice
+    global practice
     global stop
     
     global sn1
@@ -77,10 +79,11 @@ async def on_message(message):
     cap = discord.utils.get(user.server.roles, name="Captain")
     clancap = discord.utils.get(user.server.roles, name="Clan Captain")
     
+    omemention = discord.utils.get(user.server.roles, name="Omega").mention
     channel2 = bot.get_channel("457939628209602560")
     infanc = bot.get_channel("462286782080483350")
     alpanc = bot.get_channel("465547475839746058")
-    msg3 = ('Hello <@&457299107371941888>! Practice starts now!')
+    msg3 = ('Hello ' + omemention +'! Practice starts now!')
     msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
     
     #if message.author == client.user:
@@ -103,78 +106,90 @@ async def on_message(message):
                     if times == '14:30':  #2:30 PM
                         if a == 6:
                             quadice = 1
+                            practice = 1
                             
                     if times == '15:00':  #3 PM
                         if a == 6:
-                            await bot.send_message(channel2, msg5)
-                            
-                    if times == '17:30':  #5:30 PM
-                        if a == 4:
-                            quadice = 1
-                            
-                    if times == '18:00':  #6 PM
-                        if a == 4:
-                            await bot.send_message(channel2, msg5)
+                            # await bot.send_message(channel2, msg5)
+                            await bot.send_message(channel2, msg3)
                             
                     if times == '18:30':  #6:30 PM
                         if a == 6:
                             pbpractice = 1
+                            practice = 1
+                        elif a == 5:
+                            practice = 1
                             
                     if times == '19:00':  #7 PM
                         if a == 6:
                             await bot.send_message(channel2, msg3)
-                        if a == 1:
-                            pbpractice = 1
                         elif a == 2:
                             quadice = 1
+                            practice = 1
                         elif a == 3:
                             pbpractice = 1
+                            practice = 1
+                        elif a == 4:
+                            practice = 1
                         elif a == 5:
-                            pbpractice = 1
+                            await bot.send_message(channel2, msg3)
                             
                     if times == '19:30':  #7:30 PM
-                        if a == 1:
+                        if a == 2:
+                            #await bot.send_message(channel2, msg5)
                             await bot.send_message(channel2, msg3)
-                        elif a == 2:
-                            await bot.send_message(channel2, msg5)
                         elif a == 3:
                             await bot.send_message(channel2, msg3)
-                        elif a == 5:
+                        elif a == 4:
                             await bot.send_message(channel2, msg3)
                         
                     await asyncio.sleep(1)
                     
-                    if quadice == 1:
+                    if practice == 1:
                         randompass()
-                        msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                        msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
                         await bot.send_message(channel2, msg4)
-                        quadice = 0
+                        practice = 0
                         stop = 1
+                        
+                    # if quadice == 1:
+                    #     randompass()
+                    #     msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                    #     await bot.send_message(channel2, msg4)
+                    #     quadice = 0
+                    #     stop = 1
                     
-                    if pbpractice == 1:
-                        randompass()
-                        msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                        await bot.send_message(channel2, msg2)
-                        pbpractice = 0
-                        stop = 1
+                    # if pbpractice == 1:
+                    #     randompass()
+                    #     msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                    #     await bot.send_message(channel2, msg2)
+                    #     pbpractice = 0
+                    #     stop = 1
                         
                 elif stop == 1:
                     await asyncio.sleep(60)
+                    stop = 0
                     
         else:
             await bot.send_message(message.channel, 'Bot already started!')
     
-    if message.content.startswith('!pb'):
-        pbpractice = 1
+    # if message.content.startswith('!pb'):
+    #     pbpractice = 1
     
-    if message.content.startswith('!squad'):
-        quadice = 1
+    # if message.content.startswith('!squad'):
+    #     quadice = 1
         
-    if message.content.startswith('!pbstart'):
-        await bot.send_message(channel2, msg3)
+    # if message.content.startswith('!pbstart'):
+    #     await bot.send_message(channel2, msg3)
     
-    if message.content.startswith('!squadstart'):
-        await bot.send_message(channel2, msg5)
+    # if message.content.startswith('!squadstart'):
+    #     await bot.send_message(channel2, msg5)
+    
+    if message.content.startswith('!practice'):
+        practice = 1
+    
+    if message.content.startswith('!pracstart'):
+        await bot.send_message(channel2, ms3)
         
     if message.content.startswith('!omepassed'):
         allowed = False
