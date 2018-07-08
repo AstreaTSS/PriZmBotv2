@@ -71,6 +71,11 @@ async def on_message(message):
     global sn3
     global sn4
     
+    user = message.author
+    lieutenant = discord.utils.get(user.server.roles, name="Lieutenant")
+    cocap = discord.utils.get(user.server.roles, name="Co-Captain")
+    cap = discord.utils.get(user.server.roles, name="Captain")
+    clancap = discord.utils.get(user.server.roles, name="Clan Captain")
     
     channel2 = bot.get_channel("457939628209602560")
     msg3 = ('Hello <@&457299107371941888>! Practice starts now!')
@@ -171,6 +176,11 @@ async def on_message(message):
         
     if message.content.startswith('!omepassed'):
         user = message.author
+        roles = user.roles
+        
+        if clancap in roles:
+            print('It works!')
+        
         mentioned = message.mentions[0].id
         role = discord.utils.get(user.server.roles, name="Omega")
         await bot.add_roles(message.mentions[0], role)
@@ -194,6 +204,8 @@ async def on_message(message):
             newnick = begin + omechara + curname
             
         await bot.change_nickname(message.mentions[0], newnick)
+        
+        await bot.send_message(message.channel, "Command successful.")
         
     
     if message.content.startswith('!captain'):
