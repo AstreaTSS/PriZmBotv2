@@ -102,6 +102,8 @@ async def on_message(message):
             allowed = True
         elif lieut in roles:
             allowed = True
+        elif message.author.id == '229350299909881876':
+            allowed = True
             
         if allowed:
             counter = counter + 1
