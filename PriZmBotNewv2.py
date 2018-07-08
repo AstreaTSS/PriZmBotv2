@@ -78,6 +78,8 @@ async def on_message(message):
     clancap = discord.utils.get(user.server.roles, name="Clan Captain")
     
     channel2 = bot.get_channel("457939628209602560")
+    infanc = bot.get_channel("462286782080483350")
+    alpanc = bot.get_channel("465547475839746058")
     msg3 = ('Hello <@&457299107371941888>! Practice starts now!')
     msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
     
@@ -217,81 +219,140 @@ async def on_message(message):
             
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
+            
+    if message.content.startswith('!infpassed'):
+        allowed = false
+        user = message.author
+        roles = user.roles
+        
+        if clancap in roles:
+            allowed = true
+        elif cap in roles:
+            allowed = true
+        elif cocap in roles:
+            allowed = true
+        elif lieut in roles:
+            allowed = true
+            
+        if allowed:
+            mentioned = message.mentions[0].id
+            role = discord.utils.get(user.server.roles, name="Infinite")
+            await bot.add_roles(message.mentions[0], role)
+            welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
+            await bot.send_message(infanc, welbome)
+        
+            curname = str(message.mentions[0].display_name)
+            begin = 'pZ'
+            infchara = "\u25B2"
+            supbegin = begin + infchara
+            
+            if curname.startswith("pZ△"):
+                newnick = curname.replace("pZ△", supbegin)
+            elif curname.startswith("pZ▲"):
+                newnick = curname
+            elif curname.startswith("pZ∴"):
+                newnick = curname.replace("pZ∴", supbegin)
+            elif curname.startswith("pZ◆"):
+                newnick = curname.replace("pZ◆", supbegin)
+            else:
+                newnick = begin + infchara + curname
+                
+            await bot.change_nickname(message.mentions[0], newnick)
+            
+            await bot.send_message(message.channel, "Command successful.")
+            
+        else:
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
+            
+
+    if message.content.startswith('!alppassed'):
+        allowed = false
+        user = message.author
+        roles = user.roles
+        
+        if clancap in roles:
+            allowed = true
+        elif cap in roles:
+            allowed = true
+        elif cocap in roles:
+            allowed = true
+        elif lieut in roles:
+            allowed = true
+            
+        if allowed:
+            mentioned = message.mentions[0].id
+            role = discord.utils.get(user.server.roles, name="Alpha")
+            await bot.add_roles(message.mentions[0], role)
+            welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
+            await bot.send_message(alpanc, welbome)
+        
+            curname = str(message.mentions[0].display_name)
+            begin = 'pZ'
+            alpchara = "\u2234"
+            supbegin = begin + alpchara
+            
+            if curname.startswith("pZ△"):
+                newnick = curname.replace("pZ△", supbegin)
+            elif curname.startswith("pZ▲"):
+                newnick = curname.replace("pZ▲", supbegin)
+            elif curname.startswith("pZ∴"):
+                newnick = curname
+            elif curname.startswith("pZ◆"):
+                newnick = curname.replace("pZ◆", supbegin)
+            else:
+                newnick = begin + alpchara + curname
+                
+            await bot.change_nickname(message.mentions[0], newnick)
+            
+            await bot.send_message(message.channel, "Command successful.")
+            
+        else:
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
         
     
     if message.content.startswith('!captain'):
-        curname = str(message.author.display_name)
-        begin = 'pZ'
-        capchara = "\u25C6"
-        supbegin = begin + capchara
+        allowed = false
+        user = message.author
+        roles = user.roles
         
-        if curname.startswith("pZ△"):
-            newnick = curname.replace("pZ△", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ▲"):
-            newnick = curname.replace("pZ▲", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ∴"):
-            newnick = curname.replace("pZ∴", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ◆"):
-            newnick = curname
-            await bot.send_message(message.channel, "You're already a captain!")
-        else:
-            newnick = begin + capchara + curname
-            await bot.send_message(message.channel, "Name changed.")
+        if clancap in roles:
+            allowed = true
+        elif cap in roles:
+            allowed = true
+        elif cocap in roles:
+            allowed = true
+        elif lieut in roles:
+            allowed = true
             
-        await bot.change_nickname(message.author, newnick)
-
-    if message.content.startswith('!infinite'):
-        curname = str(message.author.display_name)
-        begin = 'pZ'
-        infchara = "\u25B2"
-        supbegin = begin + infchara
-        
-        if curname.startswith("pZ△"):
-            newnick = curname.replace("pZ△", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ▲"):
-            newnick = curname
-            await bot.send_message(message.channel, "You're already in Infinite!")
-        elif curname.startswith("pZ∴"):
-            newnick = curname.replace("pZ∴", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ◆"):
-            newnick = curname.replace("pZ◆", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        else:
-            newnick = begin + infchara + curname
-            await bot.send_message(message.channel, "Name changed.")
             
-        await bot.change_nickname(message.author, newnick)
-        
-    if message.content.startswith('!alpha'):
-        curname = str(message.author.display_name)
-        begin = 'pZ'
-        alpchara = "\u2234"
-        supbegin = begin + alpchara
-        
-        if curname.startswith("pZ△"):
-            newnick = curname.replace("pZ△", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ▲"):
-            newnick = curname.replace("pZ▲", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        elif curname.startswith("pZ∴"):
-            newnick = curname
-            await bot.send_message(message.channel, "You're already in Alpha!")
-        elif curname.startswith("pZ◆"):
-            newnick = curname.replace("pZ◆", supbegin)
-            await bot.send_message(message.channel, "Name changed.")
-        else:
-            newnick = begin + alpchara + curname
-            await bot.send_message(message.channel, "Name changed.")
+        if allowed = true:
+            curname = str(message.mentions[0].display_name)
+            begin = 'pZ'
+            capchara = "\u25C6"
+            supbegin = begin + capchara
             
-        await bot.change_nickname(message.author, newnick)
+            if curname.startswith("pZ△"):
+                newnick = curname.replace("pZ△", supbegin)
+                await bot.send_message(message.channel, "Name changed.")
+            elif curname.startswith("pZ▲"):
+                newnick = curname.replace("pZ▲", supbegin)
+                await bot.send_message(message.channel, "Name changed.")
+            elif curname.startswith("pZ∴"):
+                newnick = curname.replace("pZ∴", supbegin)
+                await bot.send_message(message.channel, "Name changed.")
+            elif curname.startswith("pZ◆"):
+                newnick = curname
+                await bot.send_message(message.channel, "You're already a captain!")
+            else:
+                newnick = begin + capchara + curname
+                await bot.send_message(message.channel, "Name changed.")
+                
+            await bot.change_nickname(message.mentions[0], newnick)
+            
+        else:
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
         
-
+        
     if message.content.startswith('!hello'):
         msg = 'Hello {0.author.mention}'.format(message)
         await bot.send_message(message.channel, msg)
