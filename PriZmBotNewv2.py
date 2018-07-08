@@ -90,88 +90,104 @@ async def on_message(message):
        #return
         
     if message.content.startswith("!run"):
-        counter = counter + 1
-        if counter <= 1:
-            await bot.send_message(message.channel, "Bot running in background!")
-            while True:
-                a = datetime.datetime.today().weekday()
-                times = time.strftime('%H:%M')
-                
-                if stop <= 0:
-                # this first one is meant for testing. delete before final release
-                    #if times == '13:06':
-                        #pbpractice = 1
-                        
-                # actual practices
-                    if times == '14:30':  #2:30 PM
-                        if a == 6:
-                            quadice = 1
-                            practice = 1
-                            
-                    if times == '15:00':  #3 PM
-                        if a == 6:
-                            # await bot.send_message(channel2, msg5)
-                            await bot.send_message(channel2, msg3)
-                            
-                    if times == '18:30':  #6:30 PM
-                        if a == 6:
-                            pbpractice = 1
-                            practice = 1
-                        elif a == 5:
-                            practice = 1
-                            
-                    if times == '19:00':  #7 PM
-                        if a == 6:
-                            await bot.send_message(channel2, msg3)
-                        elif a == 2:
-                            quadice = 1
-                            practice = 1
-                        elif a == 3:
-                            pbpractice = 1
-                            practice = 1
-                        elif a == 4:
-                            practice = 1
-                        elif a == 5:
-                            await bot.send_message(channel2, msg3)
-                            
-                    if times == '19:30':  #7:30 PM
-                        if a == 2:
-                            #await bot.send_message(channel2, msg5)
-                            await bot.send_message(channel2, msg3)
-                        elif a == 3:
-                            await bot.send_message(channel2, msg3)
-                        elif a == 4:
-                            await bot.send_message(channel2, msg3)
-                        
-                    await asyncio.sleep(1)
+        allowed = False
+        user = message.author
+        roles = user.roles
+        
+        if clancap in roles:
+            allowed = True
+        elif cap in roles:
+            allowed = True
+        elif cocap in roles:
+            allowed = True
+        elif lieut in roles:
+            allowed = True
+            
+        if allowed:
+            counter = counter + 1
+            if counter <= 1:
+                await bot.send_message(message.channel, "Bot running in background!")
+                while True:
+                    a = datetime.datetime.today().weekday()
+                    times = time.strftime('%H:%M')
                     
-                    if practice == 1:
-                        randompass()
-                        msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                        await bot.send_message(channel2, msg4)
-                        practice = 0
-                        stop = 1
+                    if stop <= 0:
+                    # this first one is meant for testing. delete before final release
+                        #if times == '13:06':
+                            #pbpractice = 1
+                            
+                    # actual practices
+                        if times == '14:30':  #2:30 PM
+                            if a == 6:
+                                quadice = 1
+                                practice = 1
+                                
+                        if times == '15:00':  #3 PM
+                            if a == 6:
+                                # await bot.send_message(channel2, msg5)
+                                await bot.send_message(channel2, msg3)
+                                
+                        if times == '18:30':  #6:30 PM
+                            if a == 6:
+                                pbpractice = 1
+                                practice = 1
+                            elif a == 5:
+                                practice = 1
+                                
+                        if times == '19:00':  #7 PM
+                            if a == 6:
+                                await bot.send_message(channel2, msg3)
+                            elif a == 2:
+                                quadice = 1
+                                practice = 1
+                            elif a == 3:
+                                pbpractice = 1
+                                practice = 1
+                            elif a == 4:
+                                practice = 1
+                            elif a == 5:
+                                await bot.send_message(channel2, msg3)
+                                
+                        if times == '19:30':  #7:30 PM
+                            if a == 2:
+                                #await bot.send_message(channel2, msg5)
+                                await bot.send_message(channel2, msg3)
+                            elif a == 3:
+                                await bot.send_message(channel2, msg3)
+                            elif a == 4:
+                                await bot.send_message(channel2, msg3)
+                            
+                        await asyncio.sleep(1)
                         
-                    # if quadice == 1:
-                    #     randompass()
-                    #     msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                    #     await bot.send_message(channel2, msg4)
-                    #     quadice = 0
-                    #     stop = 1
-                    
-                    # if pbpractice == 1:
-                    #     randompass()
-                    #     msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                    #     await bot.send_message(channel2, msg2)
-                    #     pbpractice = 0
-                    #     stop = 1
+                        if practice == 1:
+                            randompass()
+                            msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                            await bot.send_message(channel2, msg4)
+                            practice = 0
+                            stop = 1
+                            
+                        # if quadice == 1:
+                        #     randompass()
+                        #     msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                        #     await bot.send_message(channel2, msg4)
+                        #     quadice = 0
+                        #     stop = 1
                         
-                elif stop == 1:
-                    await asyncio.sleep(60)
-                    stop = 0
-                    
+                        # if pbpractice == 1:
+                        #     randompass()
+                        #     msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                        #     await bot.send_message(channel2, msg2)
+                        #     pbpractice = 0
+                        #     stop = 1
+                            
+                    elif stop == 1:
+                        await asyncio.sleep(60)
+                        stop = 0
+                        
+            else:
+                await bot.send_message(message.channel, 'Bot already started!')
         else:
-            await bot.send_message(message.channel, 'Bot already started!')
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
     
     # if message.content.startswith('!pb'):
     #     pbpractice = 1
@@ -186,11 +202,43 @@ async def on_message(message):
     #     await bot.send_message(channel2, msg5)
     
     if message.content.startswith('!practice'):
-        practice = 1
+        allowed = False
+        user = message.author
+        roles = user.roles
+        
+        if clancap in roles:
+            allowed = True
+        elif cap in roles:
+            allowed = True
+        elif cocap in roles:
+            allowed = True
+        elif lieut in roles:
+            allowed = True
+            
+        if allowed:
+            practice = 1
+        else:
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
     
     if message.content.startswith('!pracstart'):
-        await bot.send_message(channel2, ms3)
+        allowed = False
+        user = message.author
+        roles = user.roles
         
+        if clancap in roles:
+            allowed = True
+        elif cap in roles:
+            allowed = True
+        elif cocap in roles:
+            allowed = True
+        elif lieut in roles:
+            allowed = True
+            
+        if allowed:
+            await bot.send_message(channel2, msg3)
+        else:
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
+     
     if message.content.startswith('!omepassed'):
         allowed = False
         user = message.author
