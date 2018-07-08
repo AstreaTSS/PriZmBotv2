@@ -217,6 +217,7 @@ async def on_message(message):
             
         if allowed:
             practice = 1
+            await bot.send_message(message.channel, "Command successful.")
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
     
@@ -236,6 +237,7 @@ async def on_message(message):
             
         if allowed:
             await bot.send_message(channel2, msg3)
+            await bot.send_message(message.channel, "Command successful.")
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
      
