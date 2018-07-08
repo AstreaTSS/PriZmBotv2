@@ -278,6 +278,11 @@ async def on_message(message):
             pong = "🏓"
             await bot.add_reaction(message, pong)
     
+    if message.content.startswith("Let's"):
+        if message.author.id == '461701686235234334':
+            clap = "👏"
+            await bot.add_reaction(message, clap)
+    
     #await bot.process_commands(message)
         
 bot.run(TOKEN)
