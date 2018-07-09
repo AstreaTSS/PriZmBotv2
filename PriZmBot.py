@@ -7,7 +7,7 @@ import asyncio
 import time
 import random
 
-TOKEN = 'NDYxNzAxNjg2MjM1MjM0MzM0.DhXIuA.1iCIvZVVjHQJs3m-pd29hxfaSS4'
+TOKEN = 'NDYxNzAxNjg2MjM1MjM0MzM0.DhXIuA.1iCIvZVVjHQJs3m-pd29hxfaSS4' # this is invalid
 
 client = discord.Client()
 
