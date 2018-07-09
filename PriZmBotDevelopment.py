@@ -155,9 +155,6 @@ async def on_message(message):
     msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
     
     canceled = False
-    
-    #if message.author == client.user:
-       #return
         
     if message.content.startswith("!run"):
         allowed = False
@@ -175,9 +172,6 @@ async def on_message(message):
                     times = time.strftime('%H:%M')
                     
                     if stop <= 0:
-                    # this first one is meant for testing. delete before final release
-                        #if times == '13:06':
-                            #pbpractice = 1
                             
                     # actual practices
                         if times == '14:30':  #2:30 PM
@@ -439,7 +433,5 @@ async def on_message(message):
         if message.author.id == '465946454264119306':
             clap = "👏"
             await bot.add_reaction(message, clap)
-    
-    #await bot.process_commands(message)
         
 bot.run(TOKEN)
