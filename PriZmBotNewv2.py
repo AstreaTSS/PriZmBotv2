@@ -410,7 +410,9 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
             
-            
+    if message.content.startswith('!pzproteccdenpa'):
+        await bot.send_message(message.channel, "POROTECT DENPAI")
+    
     if message.content.startswith('!pzhelp'):
         await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
         
