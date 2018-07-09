@@ -183,11 +183,11 @@ async def on_message(message):
                                 practice = 0
                                 stop = 1
                             else:
-                            randompass()
-                            msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                            await bot.send_message(channel2, msg4)
-                            practice = 0
-                            stop = 1
+                                randompass()
+                                msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                                await bot.send_message(channel2, msg4)
+                                practice = 0
+                                stop = 1
                             
                         # if quadice == 1:
                         #     randompass()
