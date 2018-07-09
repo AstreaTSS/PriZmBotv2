@@ -224,7 +224,7 @@ async def on_message(message):
     # if message.content.startswith('!squadstart'):
     #     await bot.send_message(channel2, msg5)
     
-    if message.content.startswith('!canprac')
+    if message.content.startswith('!canprac'):
         allowed = False
         user = message.author
         roles = user.roles
