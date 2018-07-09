@@ -19,8 +19,6 @@ bot = commands.Bot(command_prefix='!', description=description)
 
 a = datetime.datetime.today().weekday()
 
-testlist = [1, 2, 3]
-
 counter = 0
 quadice = 0
 pbpractice = 0
@@ -31,10 +29,26 @@ sn2 = str(1)
 sn3 = str(1)
 sn4 = str(1)
 
-testlist = [4, 5, 6]
+roles = [4, 5, 6]
+allowed = False
 
-print(testlist)
-
+def permissions():
+    global roles
+    global allowed
+    
+    if clancap in roles:
+            allowed = True
+    elif cap in roles:
+            allowed = True
+    elif cocap in roles:
+            allowed = True
+    elif lieut in roles:
+            allowed = True
+    elif admin in roles:
+            allowed = True
+    elif message.author.id == '229350299909881876':
+            allowed = True
+            
 def randompass():
     global sn1
     global sn2
@@ -74,6 +88,9 @@ async def on_message(message):
     global practice
     global stop
     
+    global roles
+    global allowed
+    
     global sn1
     global sn2
     global sn3
@@ -103,18 +120,20 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions()
+        
+        # if clancap in roles:
+        #     allowed = True
+        # elif cap in roles:
+        #     allowed = True
+        # elif cocap in roles:
+        #     allowed = True
+        # elif lieut in roles:
+        #     allowed = True
+        # elif admin in roles:
+        #     allowed = True
+        # elif message.author.id == '229350299909881876':
+        #     allowed = True
             
         if allowed:
             counter = counter + 1
