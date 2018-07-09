@@ -116,7 +116,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     
-    bots = bot.get_channel('416865837610172418')
+    bots = bot.get_channel('429720487678050308')
     await bot.send_message(bots, '!run')
 
 @bot.event
