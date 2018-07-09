@@ -75,9 +75,10 @@ async def on_message(message):
     
     user = message.author
     lieut = discord.utils.get(user.server.roles, name="Lieutenant")
-    cocap = discord.utils.get(user.server.roles, name="Co-Captain ◆")
-    cap = discord.utils.get(user.server.roles, name="Captain ◆")
+    cocap = discord.utils.get(user.server.roles, name="Co-captains ◆")
+    cap = discord.utils.get(user.server.roles, name="Captains ◆")
     clancap = discord.utils.get(user.server.roles, name="Clan Captain")
+    admin = discord.utils.get(user.server.roles, name="Admin")
     
     omemention = discord.utils.get(user.server.roles, name="Omega △").mention
     channel2 = bot.get_channel("458396643449110569")
@@ -103,6 +104,8 @@ async def on_message(message):
         elif cocap in roles:
             allowed = True
         elif lieut in roles:
+            allowed = True
+        elif admin in roles:
             allowed = True
         elif message.author.id == '229350299909881876':
             allowed = True
@@ -237,6 +240,8 @@ async def on_message(message):
             allowed = True
         elif lieut in roles:
             allowed = True
+        elif admin in roles:
+            allowed = True
         elif message.author.id == '229350299909881876':
             allowed = True
             
@@ -258,6 +263,8 @@ async def on_message(message):
         elif cocap in roles:
             allowed = True
         elif lieut in roles:
+            allowed = True
+        elif admin in roles:
             allowed = True
         elif message.author.id == '229350299909881876':
             allowed = True
@@ -281,6 +288,8 @@ async def on_message(message):
             allowed = True
         elif lieut in roles:
             allowed = True
+        elif admin in roles:
+            allowed = True
         elif message.author.id == '229350299909881876':
             allowed = True
             
@@ -302,6 +311,10 @@ async def on_message(message):
         elif cocap in roles:
             allowed = True
         elif lieut in roles:
+            allowed = True
+        elif admin in roles:
+            allowed = True
+        elif message.author.id == '229350299909881876':
             allowed = True
             
         if allowed:
@@ -346,6 +359,8 @@ async def on_message(message):
         elif cocap in roles:
             allowed = True
         elif lieut in roles:
+            allowed = True
+        elif admin in roles:
             allowed = True
         elif message.author.id == '229350299909881876':
             allowed = True
@@ -394,6 +409,8 @@ async def on_message(message):
             allowed = True
         elif lieut in roles:
             allowed = True
+        elif admin in roles:
+            allowed = True
         elif message.author.id == '229350299909881876':
             allowed = True
             
@@ -441,6 +458,8 @@ async def on_message(message):
             allowed = True
         elif lieut in roles:
             allowed = True
+        elif admin in roles:
+            allowed = True
         elif message.author.id == '229350299909881876':
             allowed = True
             
@@ -471,9 +490,15 @@ async def on_message(message):
             
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
+            
+            
+    if message.content.startswith('!pzhelp'):
+        await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
         
+    if message.content.startswith('!pzchangelog'):
+        await bot.send_message(message.channel, "https://pastebin.com/Ejyi0hWx")
         
-    if message.content.startswith('!hello'):
+    if message.content.startswith('!pzhello'):
         msg = 'Hello {0.author.mention}'.format(message)
         await bot.send_message(message.channel, msg)
         
