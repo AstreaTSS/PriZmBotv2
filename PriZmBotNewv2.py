@@ -86,6 +86,8 @@ async def on_message(message):
     msg3 = ('Hello ' + omemention +'! Practice starts now!')
     msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
     
+    canceled = False
+    
     #if message.author == client.user:
        #return
         
@@ -120,48 +122,67 @@ async def on_message(message):
                             
                     # actual practices
                         if times == '14:30':  #2:30 PM
-                            if a == 6:
-                                quadice = 1
+                            if canceled:
                                 practice = 1
+                            else:
+                                if a == 6:
+                                    quadice = 1
+                                    practice = 1
                                 
                         if times == '15:00':  #3 PM
-                            if a == 6:
-                                # await bot.send_message(channel2, msg5)
-                                await bot.send_message(channel2, msg3)
+                            if canceled:
+                                practice = 1
+                            else:
+                                if a == 6:
+                                    # await bot.send_message(channel2, msg5)
+                                    await bot.send_message(channel2, msg3)
                                 
                         if times == '18:30':  #6:30 PM
-                            if a == 6:
-                                pbpractice = 1
+                            if canceled:
                                 practice = 1
-                            elif a == 5:
-                                practice = 1
+                            else:
+                                if a == 6:
+                                    pbpractice = 1
+                                    practice = 1
+                                elif a == 5:
+                                    practice = 1
                                 
                         if times == '19:00':  #7 PM
-                            if a == 6:
-                                await bot.send_message(channel2, msg3)
-                            elif a == 2:
-                                quadice = 1
+                            if canceled:
                                 practice = 1
-                            elif a == 3:
-                                pbpractice = 1
-                                practice = 1
-                            elif a == 4:
-                                practice = 1
-                            elif a == 5:
-                                await bot.send_message(channel2, msg3)
+                            else:
+                                if a == 6:
+                                    await bot.send_message(channel2, msg3)
+                                elif a == 2:
+                                    quadice = 1
+                                    practice = 1
+                                elif a == 3:
+                                    pbpractice = 1
+                                    practice = 1
+                                elif a == 4:
+                                    practice = 1
+                                elif a == 5:
+                                    await bot.send_message(channel2, msg3)
                                 
                         if times == '19:30':  #7:30 PM
-                            if a == 2:
-                                #await bot.send_message(channel2, msg5)
-                                await bot.send_message(channel2, msg3)
-                            elif a == 3:
-                                await bot.send_message(channel2, msg3)
-                            elif a == 4:
-                                await bot.send_message(channel2, msg3)
+                            if canceled:
+                                practice = 1
+                            else:
+                                if a == 2:
+                                    #await bot.send_message(channel2, msg5)
+                                    await bot.send_message(channel2, msg3)
+                                elif a == 3:
+                                    await bot.send_message(channel2, msg3)
+                                elif a == 4:
+                                    await bot.send_message(channel2, msg3)
                             
                         await asyncio.sleep(1)
                         
                         if practice == 1:
+                            if canceled:
+                                practice = 0
+                                stop = 1
+                            else:
                             randompass()
                             msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
                             await bot.send_message(channel2, msg4)
@@ -203,6 +224,28 @@ async def on_message(message):
     # if message.content.startswith('!squadstart'):
     #     await bot.send_message(channel2, msg5)
     
+    if message.content.startswith('!canprac')
+        allowed = False
+        user = message.author
+        roles = user.roles
+        
+        if clancap in roles:
+            allowed = True
+        elif cap in roles:
+            allowed = True
+        elif cocap in roles:
+            allowed = True
+        elif lieut in roles:
+            allowed = True
+        elif message.author.id == '229350299909881876':
+            allowed = True
+            
+        if allowed:
+            canceled = True
+            await bot.send_message(message.channel, "Practice canceled. Oof.")
+        else:
+            await bot.send_message(message.channel, "You are not allowed to execute this command.")
+    
     if message.content.startswith('!practice'):
         allowed = False
         user = message.author
@@ -215,6 +258,8 @@ async def on_message(message):
         elif cocap in roles:
             allowed = True
         elif lieut in roles:
+            allowed = True
+        elif message.author.id == '229350299909881876':
             allowed = True
             
         if allowed:
@@ -235,6 +280,8 @@ async def on_message(message):
         elif cocap in roles:
             allowed = True
         elif lieut in roles:
+            allowed = True
+        elif message.author.id == '229350299909881876':
             allowed = True
             
         if allowed:
@@ -300,6 +347,8 @@ async def on_message(message):
             allowed = True
         elif lieut in roles:
             allowed = True
+        elif message.author.id == '229350299909881876':
+            allowed = True
             
         if allowed:
             mentioned = message.mentions[0].id
@@ -345,6 +394,8 @@ async def on_message(message):
             allowed = True
         elif lieut in roles:
             allowed = True
+        elif message.author.id == '229350299909881876':
+            allowed = True
             
         if allowed:
             mentioned = message.mentions[0].id
@@ -389,6 +440,8 @@ async def on_message(message):
         elif cocap in roles:
             allowed = True
         elif lieut in roles:
+            allowed = True
+        elif message.author.id == '229350299909881876':
             allowed = True
             
             
