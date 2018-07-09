@@ -83,6 +83,8 @@ def permissions(autrid):
             allowed = True
     elif autrid == '229350299909881876':
             allowed = True
+    elif autrid == '461701686235234334':
+            allowed = True
             
 def randompass():
     global sn1
@@ -113,6 +115,9 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
+    
+    bots = bot.get_channel('416865837610172418')
+    await bot.send_message(bots, '!run')
 
 @bot.event
 async def on_message(message):
@@ -409,9 +414,6 @@ async def on_message(message):
             
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
-            
-    if message.content.startswith('!pzproteccdenpa'):
-        await bot.send_message(message.channel, "POROTECT DENPAI")
     
     if message.content.startswith('!pzhelp'):
         await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
