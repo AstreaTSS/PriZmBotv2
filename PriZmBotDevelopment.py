@@ -60,7 +60,7 @@ def nickchange(symbol):
     elif curname.startswith("pZ◆"):
         newnick = curname.replace("pZ◆", supbegin)
     else:
-        newnick = begin + omechara + curname
+        newnick = begin + symbol + curname
     
 def permissions(autrid):
     global roles
