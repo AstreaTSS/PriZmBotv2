@@ -60,7 +60,7 @@ def nickchange(symbol):
     elif curname.startswith("pZ◆"):
         newnick = curname.replace("pZ◆", supbegin)
     else:
-        newnick = begin + omechara + curname
+        newnick = begin + symbol + curname
     
 def permissions(autrid):
     global roles
@@ -426,6 +426,9 @@ async def on_message(message):
     if message.content.startswith('!pzhello'):
         msg = 'Hello {0.author.mention}'.format(message)
         await bot.send_message(message.channel, msg)
+        
+    if message.content.startswith('!pzbotcode'):
+        await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
         
     if message.content.startswith("Hi"):
         if message.author.id == '461701686235234334':
