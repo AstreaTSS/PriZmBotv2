@@ -406,7 +406,7 @@ async def on_message(message):
             curname = str(message.mentions[0].display_name)
             nickchange("◆")
             
-            if curname = newnick:
+            if curname == newnick:
                 bot.send_message(message.channel, "You already have the captain symbol. I'll probably crash now...")
             else:
                 bot.send_message(message.channel, "Name changed.")
