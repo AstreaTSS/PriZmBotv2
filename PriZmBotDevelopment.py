@@ -431,12 +431,12 @@ async def on_message(message):
         await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
         
     if message.content.startswith("Hi"):
-        if message.author.id == '461701686235234334':
+        if message.author.id == '465946454264119306':
             pong = "🏓"
             await bot.add_reaction(message, pong)
     
     if message.content.startswith("Let's"):
-        if message.author.id == '461701686235234334':
+        if message.author.id == '465946454264119306':
             clap = "👏"
             await bot.add_reaction(message, clap)
     
