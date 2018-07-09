@@ -19,6 +19,8 @@ bot = commands.Bot(command_prefix='!', description=description)
 
 a = datetime.datetime.today().weekday()
 
+testlist = [1, 2, 3]
+
 counter = 0
 quadice = 0
 pbpractice = 0
@@ -28,6 +30,10 @@ sn1 = str(1)
 sn2 = str(1)
 sn3 = str(1)
 sn4 = str(1)
+
+testlist = [4, 5, 6]
+
+print(testlist)
 
 def randompass():
     global sn1
