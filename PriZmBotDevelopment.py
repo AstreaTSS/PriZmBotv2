@@ -24,6 +24,13 @@ quadice = 0
 pbpractice = 0
 practice = 0
 stop = 0
+
+clancap = None
+cap = None
+cocap = None
+lieut = None
+admin = None
+
 sn1 = str(1)
 sn2 = str(1)
 sn3 = str(1)
@@ -32,9 +39,14 @@ sn4 = str(1)
 roles = [4, 5, 6]
 allowed = False
 
-def permissions():
+def permissions(str autrid):
     global roles
     global allowed
+    global clancap
+    global cap
+    global cocap
+    global lieut
+    global admin
     
     if clancap in roles:
             allowed = True
@@ -46,7 +58,7 @@ def permissions():
             allowed = True
     elif admin in roles:
             allowed = True
-    elif message.author.id == '229350299909881876':
+    elif autrid == '229350299909881876':
             allowed = True
             
 def randompass():
@@ -91,6 +103,12 @@ async def on_message(message):
     global roles
     global allowed
     
+    global clancap
+    global cap
+    global cocap
+    global lieut
+    global admin
+    
     global sn1
     global sn2
     global sn3
@@ -120,7 +138,7 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        permissions()
+        permissions(message.author.id)
         
         # if clancap in roles:
         #     allowed = True
