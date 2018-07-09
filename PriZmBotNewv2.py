@@ -24,11 +24,66 @@ quadice = 0
 pbpractice = 0
 practice = 0
 stop = 0
+
+clancap = None
+cap = None
+cocap = None
+lieut = None
+admin = None
+
+curname = None
+newnick = None
+
 sn1 = str(1)
 sn2 = str(1)
 sn3 = str(1)
 sn4 = str(1)
 
+roles = None
+allowed = False
+
+def nickchange(symbol):
+    global curname
+    global newnick
+    
+    begin = 'pZ'
+    supbegin = begin + symbol
+    
+    if curname.startswith(supbegin):
+        newnick = curname
+    if curname.startswith("pZ△"):
+        newnick = curname.replace("pZ△", supbegin)
+    elif curname.startswith("pZ▲"):
+        newnick = curname.replace("pZ▲", supbegin)
+    elif curname.startswith("pZ∴"):
+        newnick = curname.replace("pZ∴", supbegin)
+    elif curname.startswith("pZ◆"):
+        newnick = curname.replace("pZ◆", supbegin)
+    else:
+        newnick = begin + symbol + curname
+    
+def permissions(autrid):
+    global roles
+    global allowed
+    global clancap
+    global cap
+    global cocap
+    global lieut
+    global admin
+    
+    if clancap in roles:
+            allowed = True
+    elif cap in roles:
+            allowed = True
+    elif cocap in roles:
+            allowed = True
+    elif lieut in roles:
+            allowed = True
+    elif admin in roles:
+            allowed = True
+    elif autrid == '229350299909881876':
+            allowed = True
+            
 def randompass():
     global sn1
     global sn2
@@ -68,6 +123,18 @@ async def on_message(message):
     global practice
     global stop
     
+    global roles
+    global allowed
+    
+    global clancap
+    global cap
+    global cocap
+    global lieut
+    global admin
+    
+    global curname
+    global newnick
+    
     global sn1
     global sn2
     global sn3
@@ -88,27 +155,13 @@ async def on_message(message):
     msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
     
     canceled = False
-    
-    #if message.author == client.user:
-       #return
         
     if message.content.startswith("!run"):
         allowed = False
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions(message.author.id)
             
         if allowed:
             counter = counter + 1
@@ -119,9 +172,6 @@ async def on_message(message):
                     times = time.strftime('%H:%M')
                     
                     if stop <= 0:
-                    # this first one is meant for testing. delete before final release
-                        #if times == '13:06':
-                            #pbpractice = 1
                             
                     # actual practices
                         if times == '14:30':  #2:30 PM
@@ -232,18 +282,7 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions(message.author.id)
             
         if allowed:
             canceled = True
@@ -256,18 +295,7 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions(message.author.id)
             
         if allowed:
             practice = 1
@@ -280,18 +308,7 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions(message.author.id)
             
         if allowed:
             await bot.send_message(channel2, msg3)
@@ -304,18 +321,7 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions(message.author.id)
             
         if allowed:
             mentioned = message.mentions[0].id
@@ -323,25 +329,11 @@ async def on_message(message):
             await bot.add_roles(message.mentions[0], role)
             welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
             await bot.send_message(channel2, welbome)
-        
-            curname = str(message.mentions[0].display_name)
-            begin = 'pZ'
-            omechara = "\u25B3"
-            supbegin = begin + omechara
             
-            if curname.startswith("pZ△"):
-                newnick = curname
-            elif curname.startswith("pZ▲"):
-                newnick = curname.replace("pZ▲", supbegin)
-            elif curname.startswith("pZ∴"):
-                newnick = curname.replace("pZ∴", supbegin)
-            elif curname.startswith("pZ◆"):
-                newnick = curname.replace("pZ◆", supbegin)
-            else:
-                newnick = begin + omechara + curname
+            curname = str(message.mentions[0].display_name)
+            nickchange("△")
                 
             await bot.change_nickname(message.mentions[0], newnick)
-            
             await bot.send_message(message.channel, "Command successful.")
             
         else:
@@ -352,18 +344,7 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions(message.author.id)
             
         if allowed:
             mentioned = message.mentions[0].id
@@ -373,20 +354,7 @@ async def on_message(message):
             await bot.send_message(infanc, welbome)
         
             curname = str(message.mentions[0].display_name)
-            begin = 'pZ'
-            infchara = "\u25B2"
-            supbegin = begin + infchara
-            
-            if curname.startswith("pZ△"):
-                newnick = curname.replace("pZ△", supbegin)
-            elif curname.startswith("pZ▲"):
-                newnick = curname
-            elif curname.startswith("pZ∴"):
-                newnick = curname.replace("pZ∴", supbegin)
-            elif curname.startswith("pZ◆"):
-                newnick = curname.replace("pZ◆", supbegin)
-            else:
-                newnick = begin + infchara + curname
+            nickchange("▲")
                 
             await bot.change_nickname(message.mentions[0], newnick)
             
@@ -401,18 +369,7 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
+        permissions(message.author.id)
             
         if allowed:
             mentioned = message.mentions[0].id
@@ -422,20 +379,7 @@ async def on_message(message):
             await bot.send_message(alpanc, welbome)
         
             curname = str(message.mentions[0].display_name)
-            begin = 'pZ'
-            alpchara = "\u2234"
-            supbegin = begin + alpchara
-            
-            if curname.startswith("pZ△"):
-                newnick = curname.replace("pZ△", supbegin)
-            elif curname.startswith("pZ▲"):
-                newnick = curname.replace("pZ▲", supbegin)
-            elif curname.startswith("pZ∴"):
-                newnick = curname
-            elif curname.startswith("pZ◆"):
-                newnick = curname.replace("pZ◆", supbegin)
-            else:
-                newnick = begin + alpchara + curname
+            nickchange("∴")
                 
             await bot.change_nickname(message.mentions[0], newnick)
             
@@ -450,41 +394,16 @@ async def on_message(message):
         user = message.author
         roles = user.roles
         
-        if clancap in roles:
-            allowed = True
-        elif cap in roles:
-            allowed = True
-        elif cocap in roles:
-            allowed = True
-        elif lieut in roles:
-            allowed = True
-        elif admin in roles:
-            allowed = True
-        elif message.author.id == '229350299909881876':
-            allowed = True
-            
+        permissions(message.author.id)
             
         if allowed:
             curname = str(message.mentions[0].display_name)
-            begin = 'pZ'
-            capchara = "\u25C6"
-            supbegin = begin + capchara
+            nickchange("◆")
             
-            if curname.startswith("pZ△"):
-                newnick = curname.replace("pZ△", supbegin)
-                await bot.send_message(message.channel, "Name changed.")
-            elif curname.startswith("pZ▲"):
-                newnick = curname.replace("pZ▲", supbegin)
-                await bot.send_message(message.channel, "Name changed.")
-            elif curname.startswith("pZ∴"):
-                newnick = curname.replace("pZ∴", supbegin)
-                await bot.send_message(message.channel, "Name changed.")
-            elif curname.startswith("pZ◆"):
-                newnick = curname
-                await bot.send_message(message.channel, "You're already a captain!")
+            if curname == newnick:
+                bot.send_message(message.channel, "You already have the captain symbol. I'll probably crash now...")
             else:
-                newnick = begin + capchara + curname
-                await bot.send_message(message.channel, "Name changed.")
+                bot.send_message(message.channel, "Name changed.")
                 
             await bot.change_nickname(message.mentions[0], newnick)
             
@@ -502,6 +421,9 @@ async def on_message(message):
         msg = 'Hello {0.author.mention}'.format(message)
         await bot.send_message(message.channel, msg)
         
+    if message.content.startswith('!pzbotcode'):
+        await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
+        
     if message.content.startswith("Hi"):
         if message.author.id == '461701686235234334':
             pong = "🏓"
@@ -511,7 +433,5 @@ async def on_message(message):
         if message.author.id == '461701686235234334':
             clap = "👏"
             await bot.add_reaction(message, clap)
-    
-    #await bot.process_commands(message)
         
 bot.run(TOKEN)
