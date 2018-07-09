@@ -39,7 +39,7 @@ sn4 = str(1)
 roles = [4, 5, 6]
 allowed = False
 
-def permissions(str autrid):
+def permissions(autrid):
     global roles
     global allowed
     global clancap
