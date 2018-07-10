@@ -145,23 +145,31 @@ async def on_message(message):
     global sn3
     global sn4
     
-    user = message.author
-    lieut = discord.utils.get(user.server.roles, name="Lieutenant")
-    cocap = discord.utils.get(user.server.roles, name="Co-Captain")
-    cap = discord.utils.get(user.server.roles, name="Captain")
-    clancap = discord.utils.get(user.server.roles, name="Clan Captain")
-    admin = discord.utils.get(user.server.roles, name="Admin")
+    blop = 0
     
-    omemention = discord.utils.get(user.server.roles, name="Omega").mention
-    channel2 = bot.get_channel("457939628209602560")
-    infanc = bot.get_channel("462286782080483350")
-    alpanc = bot.get_channel("465547475839746058")
-    msg3 = ('Hello ' + omemention +'! Practice starts now!')
-    msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
-    
-    canceled = False
+    if blop < 1:
+        user = message.author
+        lieut = discord.utils.get(user.server.roles, name="Lieutenant")
+        cocap = discord.utils.get(user.server.roles, name="Co-Captain")
+        cap = discord.utils.get(user.server.roles, name="Captain")
+        clancap = discord.utils.get(user.server.roles, name="Clan Captain")
+        admin = discord.utils.get(user.server.roles, name="Admin")
         
-    if message.content.startswith("!run"):
+        omerole = discord.utils.get(user.server.roles, name="Omega")
+        infrole = discord.utils.get(user.server.roles, name="Infinite")
+        alprole = discord.utils.get(user.server.roles, name="Alpha")
+        
+        omemention = discord.utils.get(user.server.roles, name="Omega").mention
+        channel2 = bot.get_channel("457939628209602560")
+        infanc = bot.get_channel("462286782080483350")
+        alpanc = bot.get_channel("465547475839746058")
+        msg3 = ('Hello ' + omemention +'! Practice starts now!')
+        msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
+        
+        canceled = False
+        blop = 1
+        
+    if message.content == "!run":
         allowed = False
         user = message.author
         roles = user.roles
@@ -171,7 +179,6 @@ async def on_message(message):
         if allowed:
             counter = counter + 1
             if counter <= 1:
-                await bot.send_message(message.channel, "Bot running in background!")
                 while True:
                     a = datetime.datetime.today().weekday()
                     times = time.strftime('%H:%M')
@@ -282,7 +289,7 @@ async def on_message(message):
     # if message.content.startswith('!squadstart'):
     #     await bot.send_message(channel2, msg5)
     
-    if message.content.startswith('!canprac'):
+    if message.content == '!canprac':
         allowed = False
         user = message.author
         roles = user.roles
@@ -295,7 +302,7 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
     
-    if message.content.startswith('!practice'):
+    if message.content == '!practice':
         allowed = False
         user = message.author
         roles = user.roles
@@ -308,7 +315,7 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
     
-    if message.content.startswith('!pracstart'):
+    if message.content == '!pracstart':
         allowed = False
         user = message.author
         roles = user.roles
@@ -330,8 +337,7 @@ async def on_message(message):
             
         if allowed:
             mentioned = message.mentions[0].id
-            role = discord.utils.get(user.server.roles, name="Omega")
-            await bot.add_roles(message.mentions[0], role)
+            await bot.add_roles(message.mentions[0], omerole)
             welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
             await bot.send_message(channel2, welbome)
             
@@ -353,8 +359,7 @@ async def on_message(message):
             
         if allowed:
             mentioned = message.mentions[0].id
-            role = discord.utils.get(user.server.roles, name="Infinite")
-            await bot.add_roles(message.mentions[0], role)
+            await bot.add_roles(message.mentions[0], infrole)
             welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
             await bot.send_message(infanc, welbome)
         
@@ -378,8 +383,7 @@ async def on_message(message):
             
         if allowed:
             mentioned = message.mentions[0].id
-            role = discord.utils.get(user.server.roles, name="Alpha")
-            await bot.add_roles(message.mentions[0], role)
+            await bot.add_roles(message.mentions[0], alprole)
             welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
             await bot.send_message(alpanc, welbome)
         
@@ -415,17 +419,17 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
             
-    if message.content.startswith('!pzhelp'):
+    if message.content == '!pzhelp':
         await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
         
-    if message.content.startswith('!pzchangelog'):
+    if message.content == '!pzchangelog':
         await bot.send_message(message.channel, "https://pastebin.com/Ejyi0hWx")
         
-    if message.content.startswith('!pzhello'):
+    if message.content == '!pzhello':
         msg = 'Hello {0.author.mention}'.format(message)
         await bot.send_message(message.channel, msg)
         
-    if message.content.startswith('!pzbotcode'):
+    if message.content == '!pzbotcode':
         await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
         
     if message.content.startswith("Hi"):
