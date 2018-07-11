@@ -147,300 +147,327 @@ async def on_message(message):
     
     blop = 0
     
-    if blop < 1:
-        user = message.author
-        lieut = discord.utils.get(user.server.roles, name="Lieutenant")
-        cocap = discord.utils.get(user.server.roles, name="Co-Captain")
-        cap = discord.utils.get(user.server.roles, name="Captain")
-        clancap = discord.utils.get(user.server.roles, name="Clan Captain")
-        admin = discord.utils.get(user.server.roles, name="Admin")
+    if message.server is None and message.author != bot.user:
+        oof = 1
         
-        omerole = discord.utils.get(user.server.roles, name="Omega")
-        infrole = discord.utils.get(user.server.roles, name="Infinite")
-        alprole = discord.utils.get(user.server.roles, name="Alpha")
+    else:
         
-        omemention = discord.utils.get(user.server.roles, name="Omega").mention
-        channel2 = bot.get_channel("457939628209602560")
-        infanc = bot.get_channel("462286782080483350")
-        alpanc = bot.get_channel("465547475839746058")
-        msg3 = ('Hello ' + omemention +'! Practice starts now!')
-        msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
-        
-        canceled = 0
-        blop = 1
-        
-    if message.content == "!run":
-        allowed = False
-        user = message.author
-        roles = user.roles
-        
-        permissions(message.author.id)
+        if blop < 1:
+            user = message.author
+            lieut = discord.utils.get(user.server.roles, name="Lieutenant")
+            cocap = discord.utils.get(user.server.roles, name="Co-Captain")
+            cap = discord.utils.get(user.server.roles, name="Captain")
+            clancap = discord.utils.get(user.server.roles, name="Clan Captain")
+            admin = discord.utils.get(user.server.roles, name="Admin")
             
-        if allowed:
-            counter = counter + 1
-            if counter <= 1:
-                while True:
-                    if canceled == 3:
-                        canceled = 0
-                    
-                    a = datetime.datetime.today().weekday()
-                    times = time.strftime('%H:%M')
-                    
-                    if stop <= 0:
-                            
-                    # actual practices
-                        if times == '14:30':  #2:30 PM
-                            if a == 6:
-                                else:
+            omerole = discord.utils.get(user.server.roles, name="Omega")
+            infrole = discord.utils.get(user.server.roles, name="Infinite")
+            alprole = discord.utils.get(user.server.roles, name="Alpha")
+            
+            omemention = discord.utils.get(user.server.roles, name="Omega").mention
+            channel2 = bot.get_channel("457939628209602560")
+            infanc = bot.get_channel("462286782080483350")
+            alpanc = bot.get_channel("465547475839746058")
+            msg3 = ('Hello ' + omemention +'! Practice starts now!')
+            msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
+            
+            canceled = 0
+            blop = 1
+            
+        if message.content == "!run":
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
+                
+            if allowed:
+                counter = counter + 1
+                if counter <= 1:
+                    while True:
+                        if canceled == 3:
+                            canceled = 0
+                        
+                        a = datetime.datetime.today().weekday()
+                        times = time.strftime('%H:%M')
+                        
+                        if stop <= 0:
+                                
+                        # actual practices
+                            if times == '14:30':  #2:30 PM
+                                if a == 6:
                                     quadice = 1
                                     practice = 1
-                                
-                        if times == '15:00':  #3 PM
-                            if a == 6:
-                                if canceled > 0 and canceled < 3:
+                                    
+                            if times == '15:00':  #3 PM
+                                if a == 6:
+                                    if canceled > 0 and canceled < 3:
+                                        practice = 1
+                                    else:
+                                    # await bot.send_message(channel2, msg5)
+                                        await bot.send_message(channel2, msg3)
+                                    
+                            if times == '18:30':  #6:30 PM
+                                if a == 6:
+                                    pbpractice = 1
                                     practice = 1
-                                else:
-                                # await bot.send_message(channel2, msg5)
-                                    await bot.send_message(channel2, msg3)
-                                
-                        if times == '18:30':  #6:30 PM
-                            if a == 6:
-                                pbpractice = 1
-                                practice = 1
-                            elif a == 5:
-                                practice = 1
-                                
-                        if times == '19:00':  #7 PM
-                            if a == 6:
-                                if canceled > 0 and canceled < 3:
+                                elif a == 5:
                                     practice = 1
-                                else:
-                                    await bot.send_message(channel2, msg3)
-                            elif a == 2:
-                                quadice = 1
-                                practice = 1
-                            elif a == 3:
-                                pbpractice = 1
-                                practice = 1
-                            elif a == 4:
-                                practice = 1
-                            elif a == 5:
-                                if canceled > 0 and canceled < 3:
+                                    
+                            if times == '19:00':  #7 PM
+                                if a == 6:
+                                    if canceled > 0 and canceled < 3:
+                                        practice = 1
+                                    else:
+                                        await bot.send_message(channel2, msg3)
+                                elif a == 2:
+                                    quadice = 1
                                     practice = 1
-                                else:
-                                    await bot.send_message(channel2, msg3)
-                                
-                        if times == '19:30':  #7:30 PM
-                            if canceled > 0 and canceled < 3:
-                                practice = 1
-                            else:
-                                if a == 2:
-                                    #await bot.send_message(channel2, msg5)
-                                    await bot.send_message(channel2, msg3)
                                 elif a == 3:
-                                    await bot.send_message(channel2, msg3)
+                                    pbpractice = 1
+                                    practice = 1
                                 elif a == 4:
-                                    await bot.send_message(channel2, msg3)
+                                    practice = 1
+                                elif a == 5:
+                                    if canceled > 0 and canceled < 3:
+                                        practice = 1
+                                    else:
+                                        await bot.send_message(channel2, msg3)
+                                    
+                            if times == '19:30':  #7:30 PM
+                                if canceled > 0 and canceled < 3:
+                                    practice = 1
+                                else:
+                                    if a == 2:
+                                        #await bot.send_message(channel2, msg5)
+                                        await bot.send_message(channel2, msg3)
+                                    elif a == 3:
+                                        await bot.send_message(channel2, msg3)
+                                    elif a == 4:
+                                        await bot.send_message(channel2, msg3)
+                                
+                            await asyncio.sleep(1)
                             
-                        await asyncio.sleep(1)
-                        
-                        if practice == 1:
-                            if canceled:
-                                practice = 0
-                                stop = 1
-                            else:
-                                randompass()
-                                msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                                await bot.send_message(channel2, msg4)
-                                practice = 0
-                                stop = 1
+                            if practice == 1:
+                                if canceled:
+                                    practice = 0
+                                    stop = 1
+                                else:
+                                    randompass()
+                                    msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                                    await bot.send_message(channel2, msg4)
+                                    practice = 0
+                                    stop = 1
+                                
+                            # if quadice == 1:
+                            #     randompass()
+                            #     msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                            #     await bot.send_message(channel2, msg4)
+                            #     quadice = 0
+                            #     stop = 1
                             
-                        # if quadice == 1:
-                        #     randompass()
-                        #     msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                        #     await bot.send_message(channel2, msg4)
-                        #     quadice = 0
-                        #     stop = 1
-                        
-                        # if pbpractice == 1:
-                        #     randompass()
-                        #     msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                        #     await bot.send_message(channel2, msg2)
-                        #     pbpractice = 0
-                        #     stop = 1
+                            # if pbpractice == 1:
+                            #     randompass()
+                            #     msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                            #     await bot.send_message(channel2, msg2)
+                            #     pbpractice = 0
+                            #     stop = 1
+                                
+                        elif stop == 1:
+                            await asyncio.sleep(60)
+                            stop = 0
                             
-                    elif stop == 1:
-                        await asyncio.sleep(60)
-                        stop = 0
-                        
+                else:
+                    await bot.send_message(message.channel, 'Bot already started!')
             else:
-                await bot.send_message(message.channel, 'Bot already started!')
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
-    
-    # if message.content.startswith('!pb'):
-    #     pbpractice = 1
-    
-    # if message.content.startswith('!squad'):
-    #     quadice = 1
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
         
-    # if message.content.startswith('!pbstart'):
-    #     await bot.send_message(channel2, msg3)
-    
-    # if message.content.startswith('!squadstart'):
-    #     await bot.send_message(channel2, msg5)
-    
-    if message.content == '!canprac':
-        allowed = False
-        user = message.author
-        roles = user.roles
+        # if message.content.startswith('!pb'):
+        #     pbpractice = 1
         
-        permissions(message.author.id)
+        # if message.content.startswith('!squad'):
+        #     quadice = 1
             
-        if allowed:
-            canceled = 1
-            await bot.send_message(message.channel, "Practice canceled. Oof.")
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
-    
-    if message.content == '!practice':
-        allowed = False
-        user = message.author
-        roles = user.roles
+        # if message.content.startswith('!pbstart'):
+        #     await bot.send_message(channel2, msg3)
         
-        permissions(message.author.id)
-            
-        if allowed:
-            practice = 1
-            await bot.send_message(message.channel, "Command successful.")
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
-    
-    if message.content == '!pracstart':
-        allowed = False
-        user = message.author
-        roles = user.roles
+        # if message.content.startswith('!squadstart'):
+        #     await bot.send_message(channel2, msg5)
         
-        permissions(message.author.id)
+        if message.content == '!canprac':
+            allowed = False
+            user = message.author
+            roles = user.roles
             
-        if allowed:
-            await bot.send_message(channel2, msg3)
-            await bot.send_message(message.channel, "Command successful.")
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
-     
-    if message.content.startswith('!omepassed'):
-        allowed = False
-        user = message.author
-        roles = user.roles
-        
-        permissions(message.author.id)
-            
-        if allowed:
-            mentioned = message.mentions[0].id
-            await bot.add_roles(message.mentions[0], omerole)
-            welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
-            await bot.send_message(channel2, welbome)
-            
-            curname = str(message.mentions[0].display_name)
-            nickchange("△")
+            permissions(message.author.id)
                 
-            await bot.change_nickname(message.mentions[0], newnick)
-            await bot.send_message(message.channel, "Command successful.")
-            
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
-            
-    if message.content.startswith('!infpassed'):
-        allowed = False
-        user = message.author
-        roles = user.roles
-        
-        permissions(message.author.id)
-            
-        if allowed:
-            mentioned = message.mentions[0].id
-            await bot.add_roles(message.mentions[0], infrole)
-            welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
-            await bot.send_message(infanc, welbome)
-        
-            curname = str(message.mentions[0].display_name)
-            nickchange("▲")
-                
-            await bot.change_nickname(message.mentions[0], newnick)
-            
-            await bot.send_message(message.channel, "Command successful.")
-            
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
-            
-
-    if message.content.startswith('!alppassed'):
-        allowed = False
-        user = message.author
-        roles = user.roles
-        
-        permissions(message.author.id)
-            
-        if allowed:
-            mentioned = message.mentions[0].id
-            await bot.add_roles(message.mentions[0], alprole)
-            welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
-            await bot.send_message(alpanc, welbome)
-        
-            curname = str(message.mentions[0].display_name)
-            nickchange("∴")
-                
-            await bot.change_nickname(message.mentions[0], newnick)
-            
-            await bot.send_message(message.channel, "Command successful.")
-            
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
-        
-    
-    if message.content.startswith('!captain'):
-        allowed = False
-        user = message.author
-        roles = user.roles
-        
-        permissions(message.author.id)
-            
-        if allowed:
-            curname = str(message.mentions[0].display_name)
-            nickchange("◆")
-            
-            if curname == newnick:
-                bot.send_message(message.channel, "You already have the captain symbol. I'll probably crash now...")
+            if allowed:
+                canceled = 1
+                await bot.send_message(channel2, "Hey " + omemention + ", sadly, the next practice is canceled. Sorry.")
             else:
-                bot.send_message(message.channel, "Name changed.")
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+        
+        if message.content == '!practice':
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
                 
-            await bot.change_nickname(message.mentions[0], newnick)
+            if allowed:
+                practice = 1
+                await bot.send_message(message.channel, "Command successful.")
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+        
+        if message.content == '!pracstart':
+            allowed = False
+            user = message.author
+            roles = user.roles
             
-        else:
-            await bot.send_message(message.channel, "You are not allowed to execute this command.")
+            permissions(message.author.id)
+                
+            if allowed:
+                await bot.send_message(channel2, msg3)
+                await bot.send_message(message.channel, "Command successful.")
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+         
+        if message.content.startswith('!omepassed'):
+            allowed = False
+            user = message.author
+            roles = user.roles
             
-    if message.content == '!pzhelp':
-        await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
-        
-    if message.content == '!pzchangelog':
-        await bot.send_message(message.channel, "https://pastebin.com/Ejyi0hWx")
-        
-    if message.content == '!pzhello':
-        msg = 'Hello {0.author.mention}'.format(message)
-        await bot.send_message(message.channel, msg)
-        
-    if message.content == '!pzbotcode':
-        await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
-        
-    if message.content.startswith("Hi"):
-        if message.author.id == '465946454264119306':
-            pong = "🏓"
-            await bot.add_reaction(message, pong)
+            permissions(message.author.id)
+                
+            if allowed:
+                mentioned = message.mentions[0].id
+                await bot.add_roles(message.mentions[0], omerole)
+                welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
+                await bot.send_message(channel2, welbome)
+                
+                curname = str(message.mentions[0].display_name)
+                nickchange("△")
+                    
+                await bot.change_nickname(message.mentions[0], newnick)
+                await bot.send_message(message.channel, "Command successful.")
+                
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+                
+        if message.content.startswith('!infpassed'):
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
+                
+            if allowed:
+                mentioned = message.mentions[0].id
+                await bot.add_roles(message.mentions[0], infrole)
+                welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
+                await bot.send_message(infanc, welbome)
+            
+                curname = str(message.mentions[0].display_name)
+                nickchange("▲")
+                    
+                await bot.change_nickname(message.mentions[0], newnick)
+                
+                await bot.send_message(message.channel, "Command successful.")
+                
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+                
     
-    if message.content.startswith("Let's"):
-        if message.author.id == '465946454264119306':
-            clap = "👏"
-            await bot.add_reaction(message, clap)
+        if message.content.startswith('!alppassed'):
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
+                
+            if allowed:
+                mentioned = message.mentions[0].id
+                await bot.add_roles(message.mentions[0], alprole)
+                welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
+                await bot.send_message(alpanc, welbome)
+            
+                curname = str(message.mentions[0].display_name)
+                nickchange("∴")
+                    
+                await bot.change_nickname(message.mentions[0], newnick)
+                
+                await bot.send_message(message.channel, "Command successful.")
+                
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+                
+        if message.content.startswith('!passed'):
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
+                 
+            if allowed:
+                await bot.send_message(message.channel, "```\nFor what division?\n1: Omega\n2: Infinite\n3:Alpha\n4: Cancel\nRespond to the number that correlates with the division you want (and respond only with that number..\n```")
+                msg = await client.wait_for_message(author=message.author)
+                if msg.content == ("1"):
+                    print('Omega')
+                if msg.content == ("2"):
+                    print('Infinite')
+                if msg.content == ("3"):
+                    print('Alpha')
+                if msg.content == ("4"):
+                    print('Cancel')
+                else:
+                    print("Try Again")
+            
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+        
+        if message.content.startswith('!captain'):
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
+                
+            if allowed:
+                curname = str(message.mentions[0].display_name)
+                nickchange("◆")
+                
+                if curname == newnick:
+                    bot.send_message(message.channel, "You already have the captain symbol. I'll probably crash now...")
+                else:
+                    bot.send_message(message.channel, "Name changed.")
+                    
+                await bot.change_nickname(message.mentions[0], newnick)
+                
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+                
+        if message.content == '!pzhelp':
+            await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
+            
+        if message.content == '!pzchangelog':
+            await bot.send_message(message.channel, "https://pastebin.com/Ejyi0hWx")
+            
+        if message.content == '!pzhello':
+            msg = 'Hello {0.author.mention}'.format(message)
+            await bot.send_message(message.channel, msg)
+            
+        if message.content == '!pzbotcode':
+            await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
+            
+        if message.content.startswith("Hi"):
+            if message.author.id == '465946454264119306':
+                pong = "🏓"
+                await bot.add_reaction(message, pong)
+        
+        if message.content.startswith("Let's"):
+            if message.author.id == '465946454264119306':
+                clap = "👏"
+                await bot.add_reaction(message, clap)
         
 bot.run(TOKEN)
