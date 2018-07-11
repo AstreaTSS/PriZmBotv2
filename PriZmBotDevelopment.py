@@ -208,6 +208,7 @@ async def on_message(message):
                                     else:
                                     # await bot.send_message(channel2, msg5)
                                         await bot.send_message(channel2, msg3)
+                                        stop = 1
                                     
                             if times == '18:30':  #6:30 PM
                                 if a == 6:
@@ -222,6 +223,7 @@ async def on_message(message):
                                         practice = 1
                                     else:
                                         await bot.send_message(channel2, msg3)
+                                        stop = 1
                                 elif a == 2:
                                     quadice = 1
                                     practice = 1
@@ -235,6 +237,7 @@ async def on_message(message):
                                         practice = 1
                                     else:
                                         await bot.send_message(channel2, msg3)
+                                        stop = 1
                                     
                             if times == '19:30':  #7:30 PM
                                 if canceled > 0 and canceled < 3:
@@ -243,10 +246,13 @@ async def on_message(message):
                                     if a == 2:
                                         #await bot.send_message(channel2, msg5)
                                         await bot.send_message(channel2, msg3)
+                                        stop = 1
                                     elif a == 3:
                                         await bot.send_message(channel2, msg3)
+                                        stop = 1
                                     elif a == 4:
                                         await bot.send_message(channel2, msg3)
+                                        stop = 1
                                 
                             await asyncio.sleep(1)
                             
@@ -440,6 +446,18 @@ async def on_message(message):
         if message.content == '!pzbotcode':
             await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
             
+        if message.content == '!pzsorry':
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
+                 
+            if allowed:
+                await bot.send_message(channel2, "I'm sorry about the 13-15 pings the bot just sent you. Just want to say that I'm sorry.\n-Sonic49")
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+            
         if message.content.startswith("Hi"):
             if message.author.id == '465946454264119306':
                 pong = "🏓"
@@ -449,5 +467,10 @@ async def on_message(message):
             if message.author.id == '465946454264119306':
                 clap = "👏"
                 await bot.add_reaction(message, clap)
+        
+        pine = random.randint(0, 499999)
+        if pine == 49:
+            apple = "🍍"
+            await bot.add_reaction(message, apple)
         
 bot.run(TOKEN)
