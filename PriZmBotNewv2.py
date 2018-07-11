@@ -191,9 +191,8 @@ async def on_message(message):
                     # actual practices
                         if times == '14:30':  #2:30 PM
                             if a == 6:
-                                else:
-                                    quadice = 1
-                                    practice = 1
+                                quadice = 1
+                                practice = 1
                                 
                         if times == '15:00':  #3 PM
                             if a == 6:
