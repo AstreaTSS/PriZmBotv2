@@ -83,7 +83,7 @@ def permissions(autrid):
             allowed = True
     elif autrid == '229350299909881876':
             allowed = True
-    elif autrid == '461701686235234334':
+    elif autrid == '465946454264119306':
             allowed = True
             
 def randompass():
@@ -410,8 +410,8 @@ async def on_message(message):
             permissions(message.author.id)
                  
             if allowed:
-                await bot.send_message(message.channel, "```\nFor what division?\n1: Omega\n2: Infinite\n3:Alpha\n4: Cancel\nRespond to the number that correlates with the division you want (and respond only with that number..\n```")
-                msg = await client.wait_for_message(author=message.author)
+                await bot.send_message(message.channel, "```\nFor what division?\n1: Omega\n2: Infinite\n3: Alpha\n4: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                msg = await bot.wait_for_message(author=message.author)
                 if msg.content == ("1"):
                     print('Omega')
                 if msg.content == ("2"):
