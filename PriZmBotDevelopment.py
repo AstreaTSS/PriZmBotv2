@@ -410,18 +410,59 @@ async def on_message(message):
             permissions(message.author.id)
                  
             if allowed:
+                loop = True
                 await bot.send_message(message.channel, "```\nFor what division?\n1: Omega\n2: Infinite\n3: Alpha\n4: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
                 msg = await bot.wait_for_message(author=message.author)
-                if msg.content == ("1"):
-                    print('Omega')
-                if msg.content == ("2"):
-                    print('Infinite')
-                if msg.content == ("3"):
-                    print('Alpha')
-                if msg.content == ("4"):
-                    print('Cancel')
-                else:
-                    print("Try Again")
+                while loop:
+                    if msg.content == ("1"):
+                        loop = False
+                        
+                        mentioned = message.mentions[0].id
+                        await bot.add_roles(message.mentions[0], omerole)
+                        welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
+                        await bot.send_message(channel2, welbome)
+                        
+                        curname = str(message.mentions[0].display_name)
+                        nickchange("△")
+                            
+                        await bot.change_nickname(message.mentions[0], newnick)
+                        await bot.send_message(msg.channel, "Command successful.")
+                        
+                    elif msg.content == ("2"):
+                        loop = False
+                        
+                        mentioned = message.mentions[0].id
+                        await bot.add_roles(message.mentions[0], infrole)
+                        welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
+                        await bot.send_message(infanc, welbome)
+                    
+                        curname = str(message.mentions[0].display_name)
+                        nickchange("▲")
+                            
+                        await bot.change_nickname(message.mentions[0], newnick)
+                
+                        await bot.send_message(msg.channel, "Command successful.")
+                        
+                    elif msg.content == ("3"):
+                        loop = False
+                        
+                        mentioned = message.mentions[0].id
+                        await bot.add_roles(message.mentions[0], alprole)
+                        welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
+                        await bot.send_message(alpanc, welbome)
+                    
+                        curname = str(message.mentions[0].display_name)
+                        nickchange("∴")
+                            
+                        await bot.change_nickname(message.mentions[0], newnick)
+                        
+                        await bot.send_message(message.channel, "Command successful.")
+                        
+                    elif msg.content == ("4"):
+                        loop = False
+                        bot.send_message(msg.channel, "Canceled.")
+                    else:
+                        bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
             
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
