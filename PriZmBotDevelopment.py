@@ -117,7 +117,9 @@ async def on_ready():
     print('------')
     
     bots = bot.get_channel('429720487678050308')
-    await bot.send_message(bots, '!run')
+    
+    msg = await bot.send_message(bots, '!run')
+    await bot.delete_message(msg)
 
 @bot.event
 async def on_message(message):
@@ -332,75 +334,6 @@ async def on_message(message):
                 await bot.send_message(message.channel, "Command successful.")
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
-         
-        if message.content.startswith('!omepassed'):
-            allowed = False
-            user = message.author
-            roles = user.roles
-            
-            permissions(message.author.id)
-                
-            if allowed:
-                mentioned = message.mentions[0].id
-                await bot.add_roles(message.mentions[0], omerole)
-                welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
-                await bot.send_message(channel2, welbome)
-                
-                curname = str(message.mentions[0].display_name)
-                nickchange("△")
-                    
-                await bot.change_nickname(message.mentions[0], newnick)
-                await bot.send_message(message.channel, "Command successful.")
-                
-            else:
-                await bot.send_message(message.channel, "You are not allowed to execute this command.")
-                
-        if message.content.startswith('!infpassed'):
-            allowed = False
-            user = message.author
-            roles = user.roles
-            
-            permissions(message.author.id)
-                
-            if allowed:
-                mentioned = message.mentions[0].id
-                await bot.add_roles(message.mentions[0], infrole)
-                welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
-                await bot.send_message(infanc, welbome)
-            
-                curname = str(message.mentions[0].display_name)
-                nickchange("▲")
-                    
-                await bot.change_nickname(message.mentions[0], newnick)
-                
-                await bot.send_message(message.channel, "Command successful.")
-                
-            else:
-                await bot.send_message(message.channel, "You are not allowed to execute this command.")
-                
-    
-        if message.content.startswith('!alppassed'):
-            allowed = False
-            user = message.author
-            roles = user.roles
-            
-            permissions(message.author.id)
-                
-            if allowed:
-                mentioned = message.mentions[0].id
-                await bot.add_roles(message.mentions[0], alprole)
-                welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
-                await bot.send_message(alpanc, welbome)
-            
-                curname = str(message.mentions[0].display_name)
-                nickchange("∴")
-                    
-                await bot.change_nickname(message.mentions[0], newnick)
-                
-                await bot.send_message(message.channel, "Command successful.")
-                
-            else:
-                await bot.send_message(message.channel, "You are not allowed to execute this command.")
                 
         if message.content.startswith('!passed'):
             allowed = False
@@ -426,6 +359,7 @@ async def on_message(message):
                         nickchange("△")
                             
                         await bot.change_nickname(message.mentions[0], newnick)
+                        
                         await bot.send_message(msg.channel, "Command successful.")
                         
                     elif msg.content == ("2"):
@@ -460,14 +394,15 @@ async def on_message(message):
                         
                     elif msg.content == ("4"):
                         loop = False
-                        bot.send_message(msg.channel, "Canceled.")
+                        await bot.send_message(msg.channel, "Canceled.")
+                        
                     else:
-                        bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
+                        await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
             
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
         
-        if message.content.startswith('!captain'):
+        if message.content.startswith('!capnick'):
             allowed = False
             user = message.author
             roles = user.roles
