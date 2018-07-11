@@ -39,7 +39,7 @@ sn2 = str(1)
 sn3 = str(1)
 sn4 = str(1)
 
-roles = [4, 5, 6]
+roles = None
 allowed = False
 
 def nickchange(symbol):
@@ -166,7 +166,7 @@ async def on_message(message):
             infrole = discord.utils.get(user.server.roles, name="Infinite")
             alprole = discord.utils.get(user.server.roles, name="Alpha")
             
-            omemention = discord.utils.get(user.server.roles, name="Omega").mention
+            omemention = omerole.mention
             channel2 = bot.get_channel("457939628209602560")
             infanc = bot.get_channel("462286782080483350")
             alpanc = bot.get_channel("465547475839746058")
@@ -251,9 +251,10 @@ async def on_message(message):
                             await asyncio.sleep(1)
                             
                             if practice == 1:
-                                if canceled:
+                                if canceled > 0 and canceled < 3:
                                     practice = 0
                                     stop = 1
+                                    canceled = canceled + 1
                                 else:
                                     randompass()
                                     msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
