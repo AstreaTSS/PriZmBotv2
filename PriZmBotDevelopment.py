@@ -166,7 +166,7 @@ async def on_message(message):
         msg3 = ('Hello ' + omemention +'! Practice starts now!')
         msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
         
-        canceled = False
+        canceled = 0
         blop = 1
         
     if message.content == "!run":
@@ -180,6 +180,9 @@ async def on_message(message):
             counter = counter + 1
             if counter <= 1:
                 while True:
+                    if canceled == 3:
+                        canceled = 0
+                    
                     a = datetime.datetime.today().weekday()
                     times = time.strftime('%H:%M')
                     
@@ -187,50 +190,48 @@ async def on_message(message):
                             
                     # actual practices
                         if times == '14:30':  #2:30 PM
-                            if canceled:
-                                practice = 1
-                            else:
-                                if a == 6:
+                            if a == 6:
+                                else:
                                     quadice = 1
                                     practice = 1
                                 
                         if times == '15:00':  #3 PM
-                            if canceled:
-                                practice = 1
-                            else:
-                                if a == 6:
-                                    # await bot.send_message(channel2, msg5)
+                            if a == 6:
+                                if canceled > 0 and canceled < 3:
+                                    practice = 1
+                                else:
+                                # await bot.send_message(channel2, msg5)
                                     await bot.send_message(channel2, msg3)
                                 
                         if times == '18:30':  #6:30 PM
-                            if canceled:
+                            if a == 6:
+                                pbpractice = 1
                                 practice = 1
-                            else:
-                                if a == 6:
-                                    pbpractice = 1
-                                    practice = 1
-                                elif a == 5:
-                                    practice = 1
+                            elif a == 5:
+                                practice = 1
                                 
                         if times == '19:00':  #7 PM
-                            if canceled:
-                                practice = 1
-                            else:
-                                if a == 6:
+                            if a == 6:
+                                if canceled > 0 and canceled < 3:
+                                    practice = 1
+                                else:
                                     await bot.send_message(channel2, msg3)
-                                elif a == 2:
-                                    quadice = 1
+                            elif a == 2:
+                                quadice = 1
+                                practice = 1
+                            elif a == 3:
+                                pbpractice = 1
+                                practice = 1
+                            elif a == 4:
+                                practice = 1
+                            elif a == 5:
+                                if canceled > 0 and canceled < 3:
                                     practice = 1
-                                elif a == 3:
-                                    pbpractice = 1
-                                    practice = 1
-                                elif a == 4:
-                                    practice = 1
-                                elif a == 5:
+                                else:
                                     await bot.send_message(channel2, msg3)
                                 
                         if times == '19:30':  #7:30 PM
-                            if canceled:
+                            if canceled > 0 and canceled < 3:
                                 practice = 1
                             else:
                                 if a == 2:
@@ -297,7 +298,7 @@ async def on_message(message):
         permissions(message.author.id)
             
         if allowed:
-            canceled = True
+            canceled = 1
             await bot.send_message(message.channel, "Practice canceled. Oof.")
         else:
             await bot.send_message(message.channel, "You are not allowed to execute this command.")
