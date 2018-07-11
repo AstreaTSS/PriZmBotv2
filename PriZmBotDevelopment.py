@@ -306,6 +306,7 @@ async def on_message(message):
             if allowed:
                 canceled = 1
                 await bot.send_message(channel2, "Hey " + omemention + ", sadly, the next practice is canceled. Sorry.")
+                await bot.send_message(message.channel, "Command successful.")
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
         
@@ -345,8 +346,10 @@ async def on_message(message):
             if allowed:
                 loop = True
                 await bot.send_message(message.channel, "```\nFor what division?\n1: Omega\n2: Infinite\n3: Alpha\n4: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
-                msg = await bot.wait_for_message(author=message.author)
                 while loop:
+                    
+                    msg = await bot.wait_for_message(author=message.author)
+                    
                     if msg.content == ("1"):
                         loop = False
                         
