@@ -9,6 +9,8 @@ import asyncio
 import time
 import random
 
+from changelog import *
+
 TOKEN = 'NOPE'
 
 #client = discord.Client()
@@ -17,7 +19,7 @@ description = '''A bot for the use of PriZm, a Splatoon 2 clan.'''
 
 bot = commands.Bot(command_prefix='!', description=description)
 
-a = datetime.datetime.today().weekday()
+day = datetime.datetime.today().weekday()
 
 counter = 0
 quadice = 0
@@ -190,19 +192,19 @@ async def on_message(message):
                         if canceled == 3:
                             canceled = 0
                         
-                        a = datetime.datetime.today().weekday()
+                        day = datetime.datetime.today().weekday()
                         times = time.strftime('%H:%M')
                         
                         if stop <= 0:
                                 
                         # actual practices
                             if times == '14:30':  #2:30 PM
-                                if a == 6:
+                                if day == 6:
                                     quadice = 1
                                     practice = 1
                                     
                             if times == '15:00':  #3 PM
-                                if a == 6:
+                                if day == 6:
                                     if canceled > 0 and canceled < 3:
                                         practice = 1
                                     else:
@@ -211,28 +213,28 @@ async def on_message(message):
                                         stop = 1
                                     
                             if times == '18:30':  #6:30 PM
-                                if a == 6:
+                                if day == 6:
                                     pbpractice = 1
                                     practice = 1
-                                elif a == 5:
+                                elif day == 5:
                                     practice = 1
                                     
                             if times == '19:00':  #7 PM
-                                if a == 6:
+                                if day == 6:
                                     if canceled > 0 and canceled < 3:
                                         practice = 1
                                     else:
                                         await bot.send_message(channel2, msg3)
                                         stop = 1
-                                elif a == 2:
+                                elif day == 2:
                                     quadice = 1
                                     practice = 1
-                                elif a == 3:
+                                elif day == 3:
                                     pbpractice = 1
                                     practice = 1
-                                elif a == 4:
+                                elif day == 4:
                                     practice = 1
-                                elif a == 5:
+                                elif day == 5:
                                     if canceled > 0 and canceled < 3:
                                         practice = 1
                                     else:
@@ -243,14 +245,14 @@ async def on_message(message):
                                 if canceled > 0 and canceled < 3:
                                     practice = 1
                                 else:
-                                    if a == 2:
+                                    if day == 2:
                                         #await bot.send_message(channel2, msg5)
                                         await bot.send_message(channel2, msg3)
                                         stop = 1
-                                    elif a == 3:
+                                    elif day == 3:
                                         await bot.send_message(channel2, msg3)
                                         stop = 1
-                                    elif a == 4:
+                                    elif day == 4:
                                         await bot.send_message(channel2, msg3)
                                         stop = 1
                                 
@@ -458,7 +460,21 @@ async def on_message(message):
             await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
             
         if message.content == '!pzchangelog':
-            await bot.send_message(message.channel, "https://pastebin.com/Ejyi0hWx")
+            ori = await bot.send_message(message.channel, "```\nPastebin link: https://pastebin.com/Ejyi0hWx.\nTo navigate the changelog, enter the version you want in the chat (Example: \"v1.2.3\").\nTo see all of the version numbers, type \"list\"\nTo exit, type \"exit\"\n```")
+            
+            loop = True
+            
+            versions = ["v1.0.0", "v1.0.1", "v1.1.0", "v1.1.1", "v1.1.2", "v1.1.3", "v1.1.4", "v1.2.0", "v1.2.1", "v1.2.2", "v1.2.3"]
+            tosend = [a, b, c, d, e, f, g, h, i, j, k]
+            
+            while loop:
+                msg = await bot.wait_for_message(author=message.author)
+                
+                if msg in versions:
+                    num = versions.index(msg)
+                    tosay = tosend(num)
+                    
+                    await bot.send_message(msg.channel, tosay)
             
         if message.content == '!pzhello':
             msg = 'Hello {0.author.mention}'.format(message)
