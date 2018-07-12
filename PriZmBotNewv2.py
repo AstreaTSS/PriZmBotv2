@@ -9,6 +9,8 @@ import asyncio
 import time
 import random
 
+from changelog import *
+
 TOKEN = 'NOPE'
 
 #client = discord.Client()
