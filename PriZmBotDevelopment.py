@@ -471,7 +471,7 @@ async def on_message(message):
                 msg = await bot.wait_for_message(author=message.author)
                 
                 if msg.content in versions:
-                    num = versions.index(msg)
+                    num = versions.index(msg.content)
                     tosay = tosend(num)
                     
                     await bot.send_message(msg.channel, tosay)
