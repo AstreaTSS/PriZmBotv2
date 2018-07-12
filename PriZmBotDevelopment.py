@@ -477,11 +477,11 @@ async def on_message(message):
                     await bot.edit_message(ori, tosay)
                     await bot.delete_message(msg)
                 
-                elif msg.content == "list"
+                elif msg.content == "list":
                     await bot.edit_message(ori, "All versions: " +('%s' % ', '.join(map(str, versions))))
                     await bot.delete_message(msg)
                     
-                elif msg.content == "exit"
+                elif msg.content == "exit":
                     await bot.delete_message(ori)
                     await bot.delete_message(msg)
                     aa = await bot.send_message(msg.channel, "Exited")
