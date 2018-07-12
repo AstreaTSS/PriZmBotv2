@@ -1,4 +1,4 @@
-ending = "To see other versions, just type that version's number.\nTo see a list of all of the version's numbers, type \"list\".\nTo exit, type \"exit\"\n```"
+ending = "\nTo see other versions, just type that version's number.\nTo see a list of all of the version's numbers, type \"list\".\nTo exit, type \"exit\"\n```"
 
 a = "```\nv1.0.0\nInitial release.\n" + ending
 

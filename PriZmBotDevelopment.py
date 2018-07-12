@@ -474,7 +474,25 @@ async def on_message(message):
                     num = versions.index(msg.content)
                     tosay = tosend[num]
                     
-                    await bot.send_message(msg.channel, tosay)
+                    await bot.edit_message(ori, tosay)
+                    await bot.delete_message(msg)
+                
+                elif msg.content == "list"
+                    await bot.edit_message(ori, "All versions: " +('%s' % ', '.join(map(str, versions))))
+                    await bot.delete_message(msg)
+                    
+                elif msg.content == "exit"
+                    await bot.delete_message(ori)
+                    await bot.delete_message(msg)
+                    aa = await bot.send_message(msg.channel, "Exited")
+                    await asyncio.sleep(3)
+                    await bot.delete_message(aa)
+                    loop = False
+                else:
+                    await bot.delete_message(msg)
+                    aa = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for two seconds before you can).")
+                    await asyncio.sleep(2)
+                    await bot.delete_message(aa)
             
         if message.content == '!pzhello':
             msg = 'Hello {0.author.mention}'.format(message)
