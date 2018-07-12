@@ -478,20 +478,20 @@ async def on_message(message):
                     await bot.delete_message(msg)
                 
                 elif msg.content == "list":
-                    await bot.edit_message(ori, "All versions: " +('%s' % ', '.join(map(str, versions))))
+                    await bot.edit_message(ori, "```\nAll versions: " + ('%s' % ', '.join(map(str, versions))) + "\n" + ending)
                     await bot.delete_message(msg)
                     
                 elif msg.content == "exit":
                     await bot.delete_message(ori)
                     await bot.delete_message(msg)
-                    aa = await bot.send_message(msg.channel, "Exited")
+                    aa = await bot.send_message(msg.channel, "Exited.")
                     await asyncio.sleep(3)
                     await bot.delete_message(aa)
                     loop = False
                 else:
                     await bot.delete_message(msg)
-                    aa = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for two seconds before you can).")
-                    await asyncio.sleep(2)
+                    aa = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for four seconds before you can).")
+                    await asyncio.sleep(4)
                     await bot.delete_message(aa)
             
         if message.content == '!pzhello':
