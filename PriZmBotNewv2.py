@@ -170,7 +170,7 @@ async def on_message(message):
             channel2 = bot.get_channel("458396643449110569")
             infanc = bot.get_channel("458397577763749888")
             alpanc = bot.get_channel("458385881552912394")
-            msg3 = ('Hello ' + omemention +'! Practice starts now!')
+            msg3 = ('Hello ' + omemention +'! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
             msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
             
             canceled = 0
@@ -264,7 +264,10 @@ async def on_message(message):
                                 else:
                                     randompass()
                                     msg4 = ('Hi '+ omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                                    await bot.send_message(channel2, msg4)
+                                    slop = await bot.send_message(channel2, msg4)
+                                    
+                                    pong = "🏓"
+                                    await bot.add_reaction(slop, pong)
                                     practice = 0
                                     stop = 1
                                 
@@ -304,18 +307,18 @@ async def on_message(message):
         #     await bot.send_message(channel2, msg5)
         
         if message.content == '!canprac':
-                allowed = False
-                user = message.author
-                roles = user.roles
+            allowed = False
+            user = message.author
+            roles = user.roles
+            
+            permissions(message.author.id)
                 
-                permissions(message.author.id)
-                    
-                if allowed:
-                    canceled = 1
-                    await bot.send_message(channel2, "Hey " + omemention + ", sadly, the next practice is canceled. Sorry.")
-                    await bot.send_message(message.channel, "Command successful.")
-                else:
-                    await bot.send_message(message.channel, "You are not allowed to execute this command.")
+            if allowed:
+                canceled = 1
+                await bot.send_message(channel2, "Hey " + omemention + ", sadly, the next practice is canceled. Sorry.")
+                await bot.send_message(message.channel, "Command successful.")
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
         
         if message.content == '!practice':
             allowed = False
@@ -363,7 +366,10 @@ async def on_message(message):
                         mentioned = message.mentions[0].id
                         await bot.add_roles(message.mentions[0], omerole)
                         welbome = ("Let's welcome <@" + mentioned + "> to Omega!").format(message)
-                        await bot.send_message(channel2, welbome)
+                        welcome = await bot.send_message(channel2, welbome)
+                        
+                        clap = "👏"
+                        await bot.add_reaction(welcome, clap)
                         
                         curname = str(message.mentions[0].display_name)
                         nickchange("△")
@@ -378,7 +384,10 @@ async def on_message(message):
                         mentioned = message.mentions[0].id
                         await bot.add_roles(message.mentions[0], infrole)
                         welbome = ("Let's welcome <@" + mentioned + "> to Infinite!").format(message)
-                        await bot.send_message(infanc, welbome)
+                        welcome = await bot.send_message(infanc, welbome)
+                        
+                        clap = "👏"
+                        await bot.add_reaction(welcome, clap)
                     
                         curname = str(message.mentions[0].display_name)
                         nickchange("▲")
@@ -393,7 +402,10 @@ async def on_message(message):
                         mentioned = message.mentions[0].id
                         await bot.add_roles(message.mentions[0], alprole)
                         welbome = ("Let's welcome <@" + mentioned + "> to Alpha!").format(message)
-                        await bot.send_message(alpanc, welbome)
+                        welcome = await bot.send_message(alpanc, welbome)
+                        
+                        clap = "👏"
+                        await bot.add_reaction(welcome, clap)
                     
                         curname = str(message.mentions[0].display_name)
                         nickchange("∴")
@@ -445,28 +457,6 @@ async def on_message(message):
             
         if message.content == '!pzbotcode':
             await bot.send_message(message.channel, "https://github.com/Sonic4999/PriZmBotv2")
-            
-        if message.content == '!pzsorry':
-            allowed = False
-            user = message.author
-            roles = user.roles
-            
-            permissions(message.author.id)
-                 
-            if allowed:
-                await bot.send_message(channel2, "I'm sorry about the 13-15 pings the bot just sent you. Just want to say that I'm sorry.\n-Sonic49")
-            else:
-                await bot.send_message(message.channel, "You are not allowed to execute this command.")
-            
-        if message.content.startswith("Hi"):
-            if message.author.id == '461701686235234334':
-                pong = "🏓"
-                await bot.add_reaction(message, pong)
-        
-        if message.content.startswith("Let's"):
-            if message.author.id == '461701686235234334':
-                clap = "👏"
-                await bot.add_reaction(message, clap)
                 
         pine = random.randint(0, 499999)
         if pine == 49:
