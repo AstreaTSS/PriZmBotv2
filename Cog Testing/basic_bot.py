@@ -7,6 +7,8 @@ description = '''An example bot to showcase the discord.ext.commands extension
 module.
 There are a number of utility commands being showcased here.'''
 
+TOKEN = "N"
+
 # this specifies what extensions to load when the bot starts up (from this directory)
 cogs_dir = "cogs"
 
@@ -54,4 +56,4 @@ if __name__ == "__main__":
             print(f'Failed to load extension {extension}.')
             traceback.print_exc()
 
-    bot.run('token')
+    bot.run(TOKEN)
