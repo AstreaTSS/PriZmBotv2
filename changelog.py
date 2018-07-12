@@ -20,4 +20,4 @@ i = "```\nv1.2.1\nBugfix: Made sure the bot doesn't ping Omega on repeat for a w
 
 j = "```\nv1.2.2\nRemoved !pzsorry, as it was only meant for one use.\nAdded the pass to \"Practice is starting now!\"\nBugfix: Cleaned up the code to how the bot reacts with emojis to certain messages.\n" + ending
 
-k = "```\nv1.2.3\nAdded an exception to when you run !passed with nobody mentioned.\nMade a changelog screen for !pzchangelog, allowing you to see all of the changelogs without going to pastebin. Will be adding this feature to !pzhelp soon.\n" + ending
+k = "```\nv1.2.3\nAdded an exception to when you run !passed with nobody mentioned.\nMade a changelog screen for !pzchangelog, allowing you to see all of the changelogs without going to pastebin. Will be adding a similar feature to !pzhelp soon.\n" + ending
