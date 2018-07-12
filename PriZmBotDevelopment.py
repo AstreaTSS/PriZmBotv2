@@ -170,7 +170,7 @@ async def on_message(message):
             channel2 = bot.get_channel("457939628209602560")
             infanc = bot.get_channel("462286782080483350")
             alpanc = bot.get_channel("465547475839746058")
-            msg3 = ('Hello ' + omemention +'! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!"')
+            msg3 = ('Hello ' + omemention +'! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
             msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
             
             canceled = 0
@@ -355,7 +355,16 @@ async def on_message(message):
                  
             if allowed:
                 loop = True
-                await bot.send_message(message.channel, "```\nFor what division?\n1: Omega\n2: Infinite\n3: Alpha\n4: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                
+                try:
+                    mentioned = message.mentions[0].id
+                except IndexError:
+                    await bot.send_message(message.channel, "It seems like you didn't mention the person to pass. Exiting command...")
+                    loop = False
+                    
+                if loop:
+                    await bot.send_message(message.channel, "```\nFor what division?\n1: Omega\n2: Infinite\n3: Alpha\n4: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                    
                 while loop:
                     
                     msg = await bot.wait_for_message(author=message.author)
