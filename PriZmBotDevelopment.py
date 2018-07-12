@@ -470,7 +470,7 @@ async def on_message(message):
             while loop:
                 msg = await bot.wait_for_message(author=message.author)
                 
-                if msg in versions:
+                if msg.content in versions:
                     num = versions.index(msg)
                     tosay = tosend(num)
                     
