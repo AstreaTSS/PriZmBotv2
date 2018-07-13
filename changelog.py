@@ -1,4 +1,4 @@
-ending = "\nTo see other versions, just type that version's number.\nTo see a list of all of the version's numbers, type \"list\".\nTo exit, type \"exit\"\n```"
+ending = "\nTo see other versions, just type that version's number.\nTo see a list of all of the version's numbers, type \"list\".\nTo keep up the current screen you are seeing without being able to change the screen via inputs, type \"keepup\"\nTo exit, type \"exit\"\n```"
 
 a = "```\nv1.0.0\nInitial release.\n" + ending
 
@@ -21,3 +21,5 @@ i = "```\nv1.2.1\nBugfix: Made sure the bot doesn't ping Omega on repeat for a w
 j = "```\nv1.2.2\nRemoved !pzsorry, as it was only meant for one use.\nAdded the pass to \"Practice is starting now!\"\nBugfix: Cleaned up the code to how the bot reacts with emojis to certain messages.\n" + ending
 
 k = "```\nv1.2.3\nAdded an exception to when you run !passed with nobody mentioned.\nMade a changelog screen for !pzchangelog, allowing you to see all of the changelogs without going to pastebin. Will be adding a similar feature to !pzhelp soon.\n" + ending
+
+l = "```\nv1.2.4\nAdded an option to keep the current changelog screen up but also make the bot not respond to new inputs (an exit without deleting the program, one may say).\nBugfix: Made sure the pass shown at \"Practice starts now\" is accurate and not \"1111\".\n```"

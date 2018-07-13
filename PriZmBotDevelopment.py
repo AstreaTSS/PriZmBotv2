@@ -172,7 +172,6 @@ async def on_message(message):
             channel2 = bot.get_channel("457939628209602560")
             infanc = bot.get_channel("462286782080483350")
             alpanc = bot.get_channel("465547475839746058")
-            msg3 = ('Hello ' + omemention +'! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
             msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
             
             canceled = 0
@@ -189,6 +188,9 @@ async def on_message(message):
                 counter = counter + 1
                 if counter <= 1:
                     while True:
+                        
+                        msg3 = ('Hello ' + omemention +'! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
+                        
                         if canceled == 3:
                             canceled = 0
                         
@@ -460,12 +462,12 @@ async def on_message(message):
             await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
             
         if message.content == '!pzchangelog':
-            ori = await bot.send_message(message.channel, "```\nPastebin link: https://pastebin.com/Ejyi0hWx.\nTo navigate the changelog, enter the version you want in the chat (Example: \"v1.2.3\").\nTo see all of the version numbers, type \"list\"\nTo exit, type \"exit\"\n```")
+            ori = await bot.send_message(message.channel, "```\nPastebin link: https://pastebin.com/Ejyi0hWx.\nTo navigate the changelog, enter the version you want in the chat (Example: \"v1.2.3\").\nTo see all of the version numbers, type \"list\"\nTo keep up the current screen you are seeing without being able to change the screen via inputs, type \"keepup\"\nTo exit, type \"exit\"\n```")
             
             loop = True
             
-            versions = ["v1.0.0", "v1.0.1", "v1.1.0", "v1.1.1", "v1.1.2", "v1.1.3", "v1.1.4", "v1.2.0", "v1.2.1", "v1.2.2", "v1.2.3"]
-            tosend = [a, b, c, d, e, f, g, h, i, j, k]
+            versions = ["v1.0.0", "v1.0.1", "v1.1.0", "v1.1.1", "v1.1.2", "v1.1.3", "v1.1.4", "v1.2.0", "v1.2.1", "v1.2.2", "v1.2.3", "v1.2.4"]
+            tosend = [a, b, c, d, e, f, g, h, i, j, k, l]
             
             while loop:
                 msg = await bot.wait_for_message(author=message.author)
@@ -481,16 +483,23 @@ async def on_message(message):
                     await bot.edit_message(ori, "```\nAll versions: " + ('%s' % ', '.join(map(str, versions))) + "\n" + ending)
                     await bot.delete_message(msg)
                     
+                elif msg.content == "keepup"
+                    loop = False
+                    akap = await bot.send_message(msg.channel, "Alright. I'll keep this screen up, but won't accept any new input, so the screen cannot be edited.")
+                    await bot.delete_message(msg)
+                    await asyncio.sleep(4)
+                    await bot.delete_message(aa)
+                    
                 elif msg.content == "exit":
                     await bot.delete_message(ori)
                     await bot.delete_message(msg)
-                    aa = await bot.send_message(msg.channel, "Exited.")
+                    akap = await bot.send_message(msg.channel, "Exited.")
                     await asyncio.sleep(3)
                     await bot.delete_message(aa)
                     loop = False
                 else:
                     await bot.delete_message(msg)
-                    aa = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for four seconds before you can).")
+                    akap = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for four seconds before you can).")
                     await asyncio.sleep(4)
                     await bot.delete_message(aa)
             
