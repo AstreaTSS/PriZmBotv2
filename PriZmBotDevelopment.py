@@ -483,7 +483,7 @@ async def on_message(message):
                     await bot.edit_message(ori, "```\nAll versions: " + ('%s' % ', '.join(map(str, versions))) + "\n" + ending)
                     await bot.delete_message(msg)
                     
-                elif msg.content == "keepup"
+                elif msg.content == "keepup":
                     loop = False
                     akap = await bot.send_message(msg.channel, "Alright. I'll keep this screen up, but won't accept any new input, so the screen cannot be edited.")
                     await bot.delete_message(msg)

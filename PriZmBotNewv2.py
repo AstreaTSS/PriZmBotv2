@@ -487,18 +487,18 @@ async def on_message(message):
                     akap = await bot.send_message(msg.channel, "Alright. I'll keep this screen up, but won't accept any new input, so the screen cannot be edited.")
                     await bot.delete_message(msg)
                     await asyncio.sleep(4)
-                    await bot.delete_message(aa)
+                    await bot.delete_message(akap)
                     
                 elif msg.content == "exit":
                     await bot.delete_message(ori)
                     await bot.delete_message(msg)
-                    aa = await bot.send_message(msg.channel, "Exited.")
+                    akap = await bot.send_message(msg.channel, "Exited.")
                     await asyncio.sleep(3)
-                    await bot.delete_message(aa)
+                    await bot.delete_message(akap)
                     loop = False
                 else:
                     await bot.delete_message(msg)
-                    aa = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for four seconds before you can).")
+                    akap = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for four seconds before you can).")
                     await asyncio.sleep(4)
                     await bot.delete_message(aa)
             
