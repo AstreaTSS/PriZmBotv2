@@ -9,9 +9,8 @@ import asyncio
 import time
 import random
 
+from config import *
 from changelog import *
-
-TOKEN = 'NDY1OTQ2NDU0MjY0MTE5MzA2.DiU5-Q.kuVNWCBMwe-OVsSzCjwp0Fh3P4o'
 
 # client = discord.Client()
 
@@ -123,7 +122,10 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-    bots = bot.get_channel('429720487678050308')
+    if mainServer:
+        bots = bot.get_channel('416865837610172418')
+    elif developServer:
+        bots = bot.get_channel('429720487678050308')
 
     msg = await bot.send_message(bots, '!run')
     await bot.delete_message(msg)
@@ -164,22 +166,40 @@ async def on_message(message):
     else:
 
         if blop < 1:
-            user = message.author
-            lieut = discord.utils.get(user.server.roles, name="Lieutenant")
-            cocap = discord.utils.get(user.server.roles, name="Co-Captain")
-            cap = discord.utils.get(user.server.roles, name="Captain")
-            clancap = discord.utils.get(user.server.roles, name="Clan Captain")
-            admin = discord.utils.get(user.server.roles, name="Admin")
+            if mainServer:
+                user = message.author
+                lieut = discord.utils.get(user.server.roles, name="Lieutenant")
+                cocap = discord.utils.get(user.server.roles, name="Co-captains ◆")
+                cap = discord.utils.get(user.server.roles, name="Captains ◆")
+                clancap = discord.utils.get(user.server.roles, name="Clan Captain")
+                admin = discord.utils.get(user.server.roles, name="Admin")
 
-            omerole = discord.utils.get(user.server.roles, name="Omega")
-            infrole = discord.utils.get(user.server.roles, name="Infinite")
-            alprole = discord.utils.get(user.server.roles, name="Alpha")
+                omerole = discord.utils.get(user.server.roles, name="Omega △")
+                infrole = discord.utils.get(user.server.roles, name="Infinite ▲")
+                alprole = discord.utils.get(user.server.roles, name="Alpha ∴")
+
+                channel2 = bot.get_channel("458396643449110569")
+                infanc = bot.get_channel("458397577763749888")
+                alpanc = bot.get_channel("458385881552912394")
+
+            elif developServer:
+                user = message.author
+                lieut = discord.utils.get(user.server.roles, name="Lieutenant")
+                cocap = discord.utils.get(user.server.roles, name="Co-Captain")
+                cap = discord.utils.get(user.server.roles, name="Captain")
+                clancap = discord.utils.get(user.server.roles, name="Clan Captain")
+                admin = discord.utils.get(user.server.roles, name="Admin")
+
+                omerole = discord.utils.get(user.server.roles, name="Omega")
+                infrole = discord.utils.get(user.server.roles, name="Infinite")
+                alprole = discord.utils.get(user.server.roles, name="Alpha")
+
+                channel2 = bot.get_channel("457939628209602560")
+                infanc = bot.get_channel("462286782080483350")
+                alpanc = bot.get_channel("465547475839746058")
 
             omemention = omerole.mention
             alpmention = alprole.mention
-            channel2 = bot.get_channel("457939628209602560")
-            infanc = bot.get_channel("462286782080483350")
-            alpanc = bot.get_channel("465547475839746058")
 
             msg5 = (
                 'Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
@@ -326,20 +346,6 @@ async def on_message(message):
 
                             await asyncio.sleep(1)
 
-                            # if quadice == 1:
-                            #     randompass()
-                            #     msg4 = ('Hi <@&457299107371941888>! Practice starts in 30 minutes and will be a Squad, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                            #     await bot.send_message(channel2, msg4)
-                            #     quadice = 0
-                            #     stop = 1
-
-                            # if pbpractice == 1:
-                            #     randompass()
-                            #     msg2 = ('Hello <@&457299107371941888>! Practice starts in 30 minutes and will be a Private Battle. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                            #     await bot.send_message(channel2, msg2)
-                            #     pbpractice = 0
-                            #     stop = 1
-
                         elif stop == 1:
                             await asyncio.sleep(60)
                             stop = 0
@@ -348,18 +354,6 @@ async def on_message(message):
                     await bot.send_message(message.channel, 'Bot already started!')
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
-
-        # if message.content.startswith('!pb'):
-        #     pbpractice = 1
-
-        # if message.content.startswith('!squad'):
-        #     quadice = 1
-
-        # if message.content.startswith('!pbstart'):
-        #     await bot.send_message(channel2, msg3)
-
-        # if message.content.startswith('!squadstart'):
-        #     await bot.send_message(channel2, msg5)
 
         if message.content == '!omecanprac':
             allowed = False
@@ -565,14 +559,13 @@ async def on_message(message):
             await bot.send_message(message.channel, "https://pastebin.com/sBQrV3s3")
 
         if message.content == '!pzchangelog':
-            ori = await bot.send_message(message.channel,
-                                         "```\nPastebin link: https://pastebin.com/Ejyi0hWx.\nTo navigate the changelog, enter the version you want in the chat (Example: \"v1.2.3\").\nTo see all of the version numbers, type \"list\"\nTo keep up the current screen you are seeing without being able to change the screen via inputs, type \"keepup\"\nTo exit, type \"exit\"\n```")
+            ori = await bot.send_message(message.channel, "```\nPastebin link: https://pastebin.com/Ejyi0hWx.\nTo navigate the changelog, enter the version you want in the chat (Example: \"v1.2.3\").\nTo see all of the version numbers, type \"list\"\nTo keep up the current screen you are seeing without being able to change the screen via inputs, type \"keepup\"\nTo exit, type \"exit\"\n```")
 
             loop = True
 
             versions = ["v1.0.0", "v1.0.1", "v1.1.0", "v1.1.1", "v1.1.2", "v1.1.3", "v1.1.4", "v1.2.0", "v1.2.1",
-                        "v1.2.2", "v1.2.3", "v1.2.4"]
-            tosend = [a, b, c, d, e, f, g, h, i, j, k, l]
+                        "v1.2.2", "v1.2.3", "v1.2.4", "v1.2.5"]
+            tosend = [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13]
 
             while loop:
                 msg = await bot.wait_for_message(author=message.author)
@@ -581,7 +574,7 @@ async def on_message(message):
                     num = versions.index(msg.content)
                     tosay = tosend[num]
 
-                    await bot.edit_message(ori, tosay)
+                    await bot.edit_message(ori, tosay + ending)
                     await bot.delete_message(msg)
 
                 elif msg.content == "list":
