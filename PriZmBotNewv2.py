@@ -173,7 +173,8 @@ async def on_message(message):
             infanc = bot.get_channel("458397577763749888")
             alpanc = bot.get_channel("458385881552912394")
             msg5 = ('Hello <@&457299107371941888>! Practice starts now! The list will be put out depending on who reacted to the previous message.')
-            
+            msg3 = ('Hello <@&457299107371941888>! Practice starts now!')
+
             canceled = 0
             blop = 1
             
@@ -482,7 +483,7 @@ async def on_message(message):
                     await bot.edit_message(ori, "```\nAll versions: " + ('%s' % ', '.join(map(str, versions))) + "\n" + ending)
                     await bot.delete_message(msg)
                     
-                elif msg.content == "keepup"
+                elif msg.content == "keepup":
                     loop = False
                     akap = await bot.send_message(msg.channel, "Alright. I'll keep this screen up, but won't accept any new input, so the screen cannot be edited.")
                     await bot.delete_message(msg)
@@ -500,7 +501,7 @@ async def on_message(message):
                     await bot.delete_message(msg)
                     akap = await bot.send_message(msg.channel, "This does not appear to be valid. Try again (and due to limitations, you have to wait for four seconds before you can).")
                     await asyncio.sleep(4)
-                    await bot.delete_message(aa)
+                    await bot.delete_message(akap)
             
         if message.content == '!pzhello':
             msg = 'Hello {0.author.mention}'.format(message)
