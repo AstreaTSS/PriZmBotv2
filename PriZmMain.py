@@ -85,6 +85,8 @@ def permissions(autrid):
         allowed = True
     elif admin in roles:
         allowed = True
+    elif autrid == '461701686235234334':
+        allowed = True
     elif autrid == '229350299909881876':
         allowed = True
     elif autrid == '465946454264119306':
@@ -381,7 +383,7 @@ async def on_message(message):
                         await bot.send_message(message.channel, "Command successful.")
                     elif msg.content == ("3"):
                         loop = False
-                        await bot.send_message(msg.channel, "Canceled")
+                        await bot.send_message(msg.channel, "Canceled.")
                     else:
                         await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
                         
@@ -426,7 +428,7 @@ async def on_message(message):
                         await bot.send_message(message.channel, "Command successful.")
                     elif msg.content == ("3"):
                         loop = False
-                        await bot.send_message(msg.channel, "Canceled")
+                        await bot.send_message(msg.channel, "Canceled.")
                     else:
                         await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
                         
@@ -458,7 +460,7 @@ async def on_message(message):
                         await bot.send_message(message.channel, "Command successful.")
                     elif msg.content == ("3"):
                         loop = False
-                        await bot.send_message(msg.channel, "Canceled")
+                        await bot.send_message(msg.channel, "Canceled.")
                     else:
                         await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
                         
