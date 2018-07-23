@@ -403,7 +403,7 @@ async def on_message(message):
                 while loop:
                     msg = await bot.wait_for_message(author=message.author)
 
-                    if msg.content == ("1"):
+                    if msg.content == ("2"):
                         loop = False
                         
                         randompass()
@@ -414,7 +414,7 @@ async def on_message(message):
                         await bot.add_reaction(lop, pong)
                         
                         await bot.send_message(message.channel, "Command successful.")
-                    elif msg.content == ("2"):
+                    elif msg.content == ("1"):
                         loop = False
                         randompass()
                         msg4 = ('Hi ' + omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
