@@ -172,15 +172,15 @@ async def on_message(message):
                 cocap = discord.utils.get(user.server.roles, name="Co-captains ◆")
                 cap = discord.utils.get(user.server.roles, name="Captains ◆")
                 clancap = discord.utils.get(user.server.roles, name="Clan Captain")
-                admin = discord.utils.get(user.server.roles, name="Admin")
+                admin = discord.utils.get(user.server.roles, name="Moderator")
 
                 omerole = discord.utils.get(user.server.roles, name="Omega △")
                 infrole = discord.utils.get(user.server.roles, name="Infinite ▲")
                 alprole = discord.utils.get(user.server.roles, name="Alpha ∴")
 
-                channel2 = bot.get_channel("458396643449110569")
-                infanc = bot.get_channel("458397577763749888")
-                alpanc = bot.get_channel("458385881552912394")
+                channel2 = bot.get_channel("458329789854646319")
+                infanc = bot.get_channel("458329789854646319")
+                alpanc = bot.get_channel("458329789854646319")
 
             elif developServer:
                 user = message.author
@@ -354,94 +354,114 @@ async def on_message(message):
                     await bot.send_message(message.channel, 'Bot already started!')
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
-
-        if message.content == '!omecanprac':
+        
+        
+        if message.content == '!canprac':
             allowed = False
             user = message.author
             roles = user.roles
 
             permissions(message.author.id)
-
+            
             if allowed:
-                omecan = 1
-                await bot.send_message(channel2, "Hey " + omemention + ", sadly, the next practice is canceled. Sorry.")
-                await bot.send_message(message.channel, "Command successful.")
+                loop = True
+                
+                await bot.send_message(message.channel,
+                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                while loop:
+                    msg = await bot.wait_for_message(author=message.author)
+
+                    if msg.content == ("1"):
+                        loop = False
+                        omecan = 1
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("2"):
+                        loop = False
+                        alpcan = 1
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("3"):
+                        loop = False
+                        await bot.send_message(msg.channel, "Canceled")
+                    else:
+                        await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
+                        
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
-
-        if message.content == "!alpcanprac":
+                
+        if message.content == '!prac30':
             allowed = False
             user = message.author
             roles = user.roles
 
             permissions(message.author.id)
-
+            
             if allowed:
-                alpcan = 1
-                await bot.send_message(alpanc, "Hey " + alpmention + ", sadly, the next practice is canceled. Sorry.")
-                await bot.send_message(message.channel, "Command successful.")
+                loop = True
+                
+                await bot.send_message(message.channel,
+                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                while loop:
+                    msg = await bot.wait_for_message(author=message.author)
+
+                    if msg.content == ("1"):
+                        loop = False
+                        
+                        randompass()
+                        nou = ('Hi ' + alpmention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                        lop = await bot.send_message(alpanc, nou)
+
+                        pong = "🏓"
+                        await bot.add_reaction(lop, pong)
+                        
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("2"):
+                        loop = False
+                        randompass()
+                        msg4 = ('Hi ' + omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                        slop = await bot.send_message(channel2, msg4)
+
+                        pong = "🏓"
+                        await bot.add_reaction(slop, pong)
+                        
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("3"):
+                        loop = False
+                        await bot.send_message(msg.channel, "Canceled")
+                    else:
+                        await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
+                        
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
-
-        if message.content == '!alpprac':
+                
+        if message.content == '!pracstart':
             allowed = False
             user = message.author
             roles = user.roles
 
             permissions(message.author.id)
-
+            
             if allowed:
-                randompass()
-                nou = ('Hi ' + alpmention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                lop = await bot.send_message(alpanc, nou)
+                loop = True
+                
+                await bot.send_message(message.channel,
+                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                while loop:
+                    msg = await bot.wait_for_message(author=message.author)
 
-                pong = "🏓"
-                await bot.add_reaction(lop, pong)
-                await bot.send_message(message.channel, "Command successful.")
-            else:
-                await bot.send_message(message.channel, "You are not allowed to execute this command.")
-
-        if message.content == '!alppracstart':
-            allowed = False
-            user = message.author
-            roles = user.roles
-
-            permissions(message.author.id)
-
-            if allowed:
-                await bot.send_message(alpanc, alpgo)
-                await bot.send_message(message.channel, "Command successful.")
-            else:
-                await bot.send_message(message.channel, "You are not allowed to execute this command.")
-
-        if message.content == '!omeprac':
-            allowed = False
-            user = message.author
-            roles = user.roles
-
-            permissions(message.author.id)
-
-            if allowed:
-                randompass()
-                msg4 = ('Hi ' + omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                slop = await bot.send_message(channel2, msg4)
-
-                pong = "🏓"
-                await bot.add_reaction(slop, pong)
-                await bot.send_message(message.channel, "Command successful.")
-            else:
-                await bot.send_message(message.channel, "You are not allowed to execute this command.")
-
-        if message.content == '!omepracstart':
-            allowed = False
-            user = message.author
-            roles = user.roles
-
-            permissions(message.author.id)
-
-            if allowed:
-                await bot.send_message(channel2, msg3)
-                await bot.send_message(message.channel, "Command successful.")
+                    if msg.content == ("1"):
+                        loop = False
+                        await bot.send_message(channel2, msg3)
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("2"):
+                        loop = False
+                        await bot.send_message(alpanc, alpgo)
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("3"):
+                        loop = False
+                        await bot.send_message(msg.channel, "Canceled")
+                    else:
+                        await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
+                        
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
 
@@ -564,8 +584,8 @@ async def on_message(message):
             loop = True
 
             versions = ["v1.0.0", "v1.0.1", "v1.1.0", "v1.1.1", "v1.1.2", "v1.1.3", "v1.1.4", "v1.2.0", "v1.2.1",
-                        "v1.2.2", "v1.2.3", "v1.2.4", "v1.2.5"]
-            tosend = [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13]
+                        "v1.2.2", "v1.2.3", "v1.2.4", "v1.2.5", "v1.2.6"]
+            tosend = [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14]
 
             while loop:
                 msg = await bot.wait_for_message(author=message.author)
@@ -586,6 +606,7 @@ async def on_message(message):
                     loop = False
                     akap = await bot.send_message(msg.channel,
                                                   "Alright. I'll keep this screen up, but won't accept any new input, so the screen cannot be edited.")
+                    await bot.edit_message(ori, tosay + "```")
                     await bot.delete_message(msg)
                     await asyncio.sleep(4)
                     await bot.delete_message(akap)
