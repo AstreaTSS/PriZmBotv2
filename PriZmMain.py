@@ -124,7 +124,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     
-    await bot.change_presence(game=discord.Game(name="Splatoon 2"))
+    await bot.change_presence(game=discord.Game(name="Splatoon 2", type = 0))
 
     if mainServer:
         bots = bot.get_channel('416865837610172418')
