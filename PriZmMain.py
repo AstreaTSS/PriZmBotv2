@@ -132,7 +132,7 @@ async def on_ready():
         bots = bot.get_channel('429720487678050308')
 
     #msg = await bot.send_message(bots, '!run')
-    await bot.delete_message(msg)
+    #await bot.delete_message(msg)
 
 
 @bot.event
