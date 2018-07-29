@@ -25,6 +25,7 @@ quadice = 0
 pbpractice = 0
 omeprac = 0
 alpprac = 0
+mixprac = 0
 stop = 0
 
 clancap = None
@@ -142,6 +143,7 @@ async def on_message(message):
     global pbpractice
     global omeprac
     global alpprac
+    global mixprac
     global stop
 
     global roles
@@ -177,6 +179,8 @@ async def on_message(message):
                 cap = discord.utils.get(user.server.roles, name="Captains ◆")
                 clancap = discord.utils.get(user.server.roles, name="Clan Captain")
                 admin = discord.utils.get(user.server.roles, name="Moderator")
+                
+                clanmem = discord.utils.get(user.server.roles, name="Clan members")
 
                 omerole = discord.utils.get(user.server.roles, name="Omega △")
                 infrole = discord.utils.get(user.server.roles, name="Infinite ▲")
@@ -193,6 +197,8 @@ async def on_message(message):
                 cap = discord.utils.get(user.server.roles, name="Captain")
                 clancap = discord.utils.get(user.server.roles, name="Clan Captain")
                 admin = discord.utils.get(user.server.roles, name="Admin")
+                
+                clanmem = discord.utils.get(user.server.roles, name="Clan members")
 
                 omerole = discord.utils.get(user.server.roles, name="Omega")
                 infrole = discord.utils.get(user.server.roles, name="Infinite")
@@ -201,7 +207,8 @@ async def on_message(message):
                 channel2 = bot.get_channel("457939628209602560")
                 infanc = bot.get_channel("462286782080483350")
                 alpanc = bot.get_channel("465547475839746058")
-
+			
+			clanmention = clanmem.mention
             omemention = omerole.mention
             alpmention = alprole.mention
 
@@ -212,6 +219,7 @@ async def on_message(message):
             alpgo = "Hello " + alpmention + '! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!"
             omecan = 0
             alpcan = 0
+            mixcan = 0
             blop = 1
 
         if message.content == "!run":
@@ -228,7 +236,11 @@ async def on_message(message):
 
                         msg3 = ('Hello ' + omemention + '! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
                         alpgo = ("Hello " + alpmention + '! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
-
+						mixgp = ("Hello " + omemention + " and " alpmention + '! Practice starts now! Again, the pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
+                        
+                        if mixcan == 3:
+							mixcan = 0
+                        
                         if omecan == 3:
                             omecan = 0
 
@@ -241,112 +253,147 @@ async def on_message(message):
                         if stop <= 0:
 
                             # actual practices
-                            if times == '14:30':  # 2:30 PM
-                                if day == 6:
-                                    quadice = 1
-                                    omeprac = 1
+                            
+                            if times == "16:30":  # 4:30 PM
+								mixprac = 1
+								
+							if times == '17:00':  # 5 PM
+								if mixcan > 0 and mixcan < 3:
+									mixprac = 1
+								else:
+									await bot.send_message(channel2, mixgo)
+									stop = 1
+							if times == '18:30':  # 6:30 PM
+								mixprac = 1
+								
+							if times == '19:00':  # 7 PM
+								if mixcan > 0 and mixcan < 3:
+									mixprac = 1
+								else:
+									await bot.send_message(channel2, mixgo)
+									stop = 1
+									
+                            #if times == '14:30':  # 2:30 PM
+                                #if day == 6:
+                                    #quadice = 1
+                                    #omeprac = 1
 
-                            if times == '15:00':  # 3 PM
-                                if day == 6:
-                                    if omecan > 0 and omecan < 3:
-                                        omeprac = 1
-                                    else:
-                                        # await bot.send_message(channel2, msg5)
-                                        await bot.send_message(channel2, msg3)
-                                        stop = 1
+                            #if times == '15:00':  # 3 PM
+                                #if day == 6:
+                                    #if omecan > 0 and omecan < 3:
+                                        #omeprac = 1
+                                    #else:
+                                        ## await bot.send_message(channel2, msg5)
+                                        #await bot.send_message(channel2, msg3)
+                                        #stop = 1
 
-                            if times == '16:30':  # 4:30 PM
-                                if day == 5:
-                                    alpprac = 1
-                                elif day == 6:
-                                    alpprac = 1
+                            #if times == '16:30':  # 4:30 PM
+                                #if day == 5:
+                                    #alpprac = 1
+                                #elif day == 6:
+                                    #alpprac = 1
 
-                            if times == '17:00':  # 5 PM
-                                if day == 5:
-                                    if alpcan > 0 and alpcan < 3:
-                                        alpprac = 1
-                                    else:
-                                        await bot.send_message(alpanc, alpgo)
-                                elif day == 6:
-                                    if alpcan > 0 and alpcan < 3:
-                                        alpprac = 1
-                                    else:
-                                        await bot.send_message(alpanc, alpgo)
+                            #if times == '17:00':  # 5 PM
+                                #if day == 5:
+                                    #if alpcan > 0 and alpcan < 3:
+                                        #alpprac = 1
+                                    #else:
+                                        #await bot.send_message(alpanc, alpgo)
+                                #elif day == 6:
+                                    #if alpcan > 0 and alpcan < 3:
+                                        #alpprac = 1
+                                    #else:
+                                        #await bot.send_message(alpanc, alpgo)
 
-                            if times == '18:30':  # 6:30 PM
-                                if day == 6:
-                                    pbpractice = 1
-                                    omeprac = 1
-                                elif day == 5:
-                                    omeprac = 1
+                            #if times == '18:30':  # 6:30 PM
+                                #if day == 6:
+                                    #pbpractice = 1
+                                    #omeprac = 1
+                                #elif day == 5:
+                                    #omeprac = 1
 
-                            if times == '19:00':  # 7 PM
-                                if day == 6:
-                                    if omecan > 0 and omecan < 3:
-                                        omeprac = 1
-                                    else:
-                                        await bot.send_message(channel2, msg3)
-                                        stop = 1
-                                elif day == 2:
-                                    quadice = 1
-                                    omeprac = 1
-                                elif day == 3:
-                                    pbpractice = 1
-                                    omeprac = 1
-                                elif day == 4:
-                                    omeprac = 1
-                                elif day == 5:
-                                    if omecan > 0 and omecan < 3:
-                                        omeprac = 1
-                                    else:
-                                        await bot.send_message(channel2, msg3)
-                                        stop = 1
+                            #if times == '19:00':  # 7 PM
+                                #if day == 6:
+                                    #if omecan > 0 and omecan < 3:
+                                        #omeprac = 1
+                                    #else:
+                                        #await bot.send_message(channel2, msg3)
+                                        #stop = 1
+                                #elif day == 2:
+                                    #quadice = 1
+                                    #omeprac = 1
+                                #elif day == 3:
+                                    #pbpractice = 1
+                                    #omeprac = 1
+                                #elif day == 4:
+                                    #omeprac = 1
+                                #elif day == 5:
+                                    #if omecan > 0 and omecan < 3:
+                                        #omeprac = 1
+                                    #else:
+                                        #await bot.send_message(channel2, msg3)
+                                        #stop = 1
 
-                            if times == '19:30':  # 7:30 PM
-                                if omecan > 0 and omecan < 3:
-                                    omeprac = 1
-                                else:
-                                    if day == 2:
-                                        # await bot.send_message(channel2, msg5)
-                                        await bot.send_message(channel2, msg3)
-                                        stop = 1
-                                    elif day == 3:
-                                        await bot.send_message(channel2, msg3)
-                                        stop = 1
-                                    elif day == 4:
-                                        await bot.send_message(channel2, msg3)
-                                        stop = 1
-
-                            if omeprac == 1:
-                                if 0 < omecan < 3:
-                                    omeprac = 0
-                                    stop = 1
-                                    omecan = omecan + 1
-                                else:
-                                    randompass()
-                                    msg4 = ('Hi ' + omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                                    slop = await bot.send_message(channel2, msg4)
-
-                                    pong = "🏓"
+                            #if times == '19:30':  # 7:30 PM
+                                #if omecan > 0 and omecan < 3:
+                                    #omeprac = 1
+                                #else:
+                                    #if day == 2:
+                                        ## await bot.send_message(channel2, msg5)
+                                        #await bot.send_message(channel2, msg3)
+                                        #stop = 1
+                                    #elif day == 3:
+                                        #await bot.send_message(channel2, msg3)
+                                        #stop = 1
+                                    #elif day == 4:
+                                        #await bot.send_message(channel2, msg3)
+                                        #stop = 1
+                                        
+                             if mixprac = 1:
+								 if 0 < mixcan < 3:
+									 mixprac = 0
+									 stop = 1
+									 mixcan = mixcan + 1
+								else:
+									randompass()
+									msg4 = ("Hi " + omemention + " and " + alpmention + "! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: " + sn1 + sn2 + sn3 + sn4)
+									slop = await bot.send_message(channel2, msg4)
+									
+									pong = "🏓"
                                     await bot.add_reaction(slop, pong)
-                                    omeprac = 0
+                                    mixprac = 0
                                     stop = 1
+                                    
+                            #if omeprac == 1:
+                                #if 0 < omecan < 3:
+                                    #omeprac = 0
+                                    #stop = 1
+                                    #omecan = omecan + 1
+                                #else:
+                                    #randompass()
+                                    #msg4 = ('Hi ' + omemention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                                    #slop = await bot.send_message(channel2, msg4)
 
-                            if alpprac == 1:
-                                print("hello")
-                                if 0 < alpcan < 3:
-                                    alpprac = 0
-                                    stop = 1
-                                    alpcan = alpcan + 1
-                                else:
-                                    randompass()
-                                    nou = ('Hi ' + alpmention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
-                                    lop = await bot.send_message(alpanc, nou)
+                                    #pong = "🏓"
+                                    #await bot.add_reaction(slop, pong)
+                                    #omeprac = 0
+                                    #stop = 1
 
-                                    pong = "🏓"
-                                    await bot.add_reaction(lop, pong)
-                                    alpprac = 0
-                                    stop = 1
+                            #if alpprac == 1:
+                                #print("hello")
+                                #if 0 < alpcan < 3:
+                                    #alpprac = 0
+                                    #stop = 1
+                                    #alpcan = alpcan + 1
+                                #else:
+                                    #randompass()
+                                    #nou = ('Hi ' + alpmention + '! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: ' + sn1 + sn2 + sn3 + sn4)
+                                    #lop = await bot.send_message(alpanc, nou)
+
+                                    #pong = "🏓"
+                                    #await bot.add_reaction(lop, pong)
+                                    #alpprac = 0
+                                    #stop = 1
 
                             await asyncio.sleep(1)
 
@@ -371,7 +418,7 @@ async def on_message(message):
                 loop = True
                 
                 await bot.send_message(message.channel,
-                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Omega and Alpha\n4: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
                 while loop:
                     msg = await bot.wait_for_message(author=message.author)
 
@@ -384,6 +431,10 @@ async def on_message(message):
                         alpcan = 1
                         await bot.send_message(message.channel, "Command successful.")
                     elif msg.content == ("3"):
+						loop = False
+						mixcan = 1
+						await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("4"):
                         loop = False
                         await bot.send_message(msg.channel, "Canceled.")
                     else:
@@ -403,7 +454,7 @@ async def on_message(message):
                 loop = True
                 
                 await bot.send_message(message.channel,
-                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Omega and Alpha\n4:Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
                 while loop:
                     msg = await bot.wait_for_message(author=message.author)
 
@@ -429,6 +480,16 @@ async def on_message(message):
                         
                         await bot.send_message(message.channel, "Command successful.")
                     elif msg.content == ("3"):
+						loop = False
+						
+						randompass()
+						msg4 = ("Hi " + omemention + " and " + alpmention + "! Practice starts in 30 minutes, so make sure you react to this message with a 🏓 so we can get a list. The pass will be: " + sn1 + sn2 + sn3 + sn4)
+						slop = await bot.send_message(channel2, msg4)
+									
+						pong = "🏓"
+                        await bot.add_reaction(slop, pong)
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("4"):
                         loop = False
                         await bot.send_message(msg.channel, "Canceled.")
                     else:
@@ -448,7 +509,7 @@ async def on_message(message):
                 loop = True
                 
                 await bot.send_message(message.channel,
-                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Omega and Alpha\n4:Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
                 while loop:
                     msg = await bot.wait_for_message(author=message.author)
 
@@ -462,6 +523,10 @@ async def on_message(message):
                         await bot.send_message(message.channel, "Command successful.")
                     elif msg.content == ("3"):
                         loop = False
+                        await bot.send_message(alpanc, mixgo)
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("4"):
+                        loop = False
                         await bot.send_message(msg.channel, "Canceled.")
                     else:
                         await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
@@ -469,6 +534,48 @@ async def on_message(message):
             else:
                 await bot.send_message(message.channel, "You are not allowed to execute this command.")
 
+		if message.content.startswith("!practice"):
+			allowed = False
+            user = message.author
+            roles = user.roles
+
+            permissions(message.author.id)
+            
+            if allowed:
+                loop = True
+                
+                await bot.send_message(message.channel,
+                                           "```\nFor what division?\n1: Omega\n2: Alpha\n3: Omega and Alpha\n4:Cancel\nRespond to the number that correlates with the division you want. (and respond only with that number)\n```")
+                while loop:
+                    msg = await bot.wait_for_message(author=message.author)
+
+                    if msg.content == ("1"):
+                        loop = False
+                        
+                        randompass()
+                        await bot.send_message(channel2, 'Hello ' + omemention + '! Practice starts now! The pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("2"):
+                        loop = False
+                        
+                        randompass()
+                        await bot.send_message(alpanc, 'Hello ' + alpmention + '! Practice starts now! The pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("3"):
+                        loop = False
+                        
+                        randompass()
+                        await bot.send_message(alpanc, 'Hello ' + omemention + " and " + alpmention '! Practice starts now! The pass is ' + sn1 + sn2 + sn3 + sn4 + "!")
+                        await bot.send_message(message.channel, "Command successful.")
+                    elif msg.content == ("4"):
+                        loop = False
+                        await bot.send_message(msg.channel, "Canceled.")
+                    else:
+                        await bot.send_message(msg.channel, "Your response doesn't seem to be a number 1-4. Try again.")
+                        
+            else:
+                await bot.send_message(message.channel, "You are not allowed to execute this command.")
+                
         if message.content.startswith('!passed'):
             allowed = False
             user = message.author
