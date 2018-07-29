@@ -1,6 +1,5 @@
 # https://github.com/Rapptz/discord.py/blob/async/examples/reply.py was used for basic blueprints for the rest of this project
 # Uses discord.py
-# Remember to change the token to the working one and back to 'Nope' before you send anything to Github.
 
 import discord
 from discord.ext import commands
